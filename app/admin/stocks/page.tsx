@@ -40,7 +40,7 @@ type Product = {
 
 const EMPTY_PRODUCT: Product = {
     name: "",
-    brand: "Teezide",
+    brand: "Mello",
     category: "",
     subCategory: "",
     productType: "",
@@ -425,7 +425,7 @@ export default function StocksPage() {
                                         <label className="block text-sm font-medium text-gray-700 mb-1">Product Name</label>
                                         <input required name="name" value={formData.name} onChange={handleInputChange} className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#623903] outline-none" placeholder="e.g. Black Pepper 100g" />
                                     </div>
-                                    {/* Brand is hardcoded to Teezide, hidden from user */}
+                                    {/* Brand is hardcoded to Mello, hidden from user */}
 
                                     <div>
                                         <label className="block text-sm font-medium text-gray-700 mb-1">Category</label>

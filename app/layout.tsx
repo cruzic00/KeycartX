@@ -5,7 +5,7 @@ import LayoutShell from "../components/LayoutShell";
 import { getHomeSettings } from "../lib/settings";
 
 export const metadata = {
-  title: "Teezide",
+  title: "Mello",
   description: "Customize your T-shirt with your designs",
 };
 

@@ -1,4 +1,4 @@
--- Teezide schema for Supabase (Postgres)
+-- Mello schema for Supabase (Postgres)
 -- Run this in Supabase → SQL Editor. Safe to re-run (idempotent where practical).
 
 -- ---------------------------------------------------------------------------

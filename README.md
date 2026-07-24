@@ -1,4 +1,4 @@
-# Teezide
+# Mello
 
 A modern T-shirt store built with **Next.js 15**, **React 19**, **Supabase** (Postgres + Auth) and **Razorpay** payments.
 

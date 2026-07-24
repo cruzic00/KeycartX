@@ -1,4 +1,4 @@
--- Seed catalog for Teezide. Run after schema.sql. Prices are in paisa.
+-- Seed catalog for Mello. Run after schema.sql. Prices are in paisa.
 insert into public.products (slug, title, description, price, mrp, image_url, images, sizes, rating, reviews_count, badge, best_price_note, category)
 values
   (
