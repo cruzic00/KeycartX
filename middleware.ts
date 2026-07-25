@@ -11,7 +11,10 @@ export async function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname;
 
   if (SITE_LOCKED && !UNLOCKED_PREFIXES.some((p) => path.startsWith(p))) {
-    return NextResponse.rewrite(new URL("/__locked", request.url));
+    return new NextResponse(
+      "<!DOCTYPE html><html><head><title>404</title><meta name=\"robots\" content=\"noindex\"></head><body style=\"margin:0;display:flex;align-items:center;justify-content:center;height:100vh;font-family:sans-serif;color:#333;background:#fff\">404 | This page could not be found.</body></html>",
+      { status: 404, headers: { "content-type": "text/html" } }
+    );
   }
 
   let response = NextResponse.next({ request });
