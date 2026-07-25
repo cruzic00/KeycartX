@@ -3,7 +3,17 @@ import { createServerClient } from "@supabase/ssr";
 
 const PROTECTED = ["/account", "/orders", "/profile"];
 
+// Payment lock: flip to false once the client pays, then redeploy.
+const SITE_LOCKED = true;
+const UNLOCKED_PREFIXES = ["/admin", "/login", "/api"];
+
 export async function middleware(request: NextRequest) {
+  const path = request.nextUrl.pathname;
+
+  if (SITE_LOCKED && !UNLOCKED_PREFIXES.some((p) => path.startsWith(p))) {
+    return NextResponse.rewrite(new URL("/__locked", request.url));
+  }
+
   let response = NextResponse.next({ request });
 
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -41,7 +51,6 @@ export async function middleware(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser();
 
-  const path = request.nextUrl.pathname;
   const isAdminPath = path.startsWith("/admin");
   const isProtected = isAdminPath || PROTECTED.some((p) => path.startsWith(p));
 
