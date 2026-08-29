@@ -30,7 +30,7 @@ export default function RootShell() {
           header on every navigation. Nested inside, only the page content
           suspends. */}
       <Suspense fallback={<div className="min-h-screen" />}>
-        <AnimatePresence mode="wait">
+        <AnimatePresence>
           <PageTransition key={location.pathname}>
             <Outlet />
           </PageTransition>
