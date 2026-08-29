@@ -62,8 +62,16 @@ export default function Footer() {
             <ul className="space-y-2">
               <li className="hover:text-white cursor-pointer transition-colors">ABOUT US</li>
               <li className="hover:text-white cursor-pointer transition-colors">BLOG</li>
-              <li className="hover:text-white cursor-pointer transition-colors">PRIVACY POLICY</li>
-              <li className="hover:text-white cursor-pointer transition-colors">TERMS & CONDITIONS</li>
+              <li>
+                <Link to="/privacy" className="hover:text-white transition-colors">
+                  PRIVACY POLICY
+                </Link>
+              </li>
+              <li>
+                <Link to="/terms" className="hover:text-white transition-colors">
+                  TERMS &amp; CONDITIONS
+                </Link>
+              </li>
             </ul>
           </div>
           <div>

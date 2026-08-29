@@ -28,6 +28,8 @@ const Account = lazy(() => import("./routes/Account"));
 const Profile = lazy(() => import("./routes/profile/Profile"));
 const ProfileEdit = lazy(() => import("./routes/profile/Edit"));
 const ProfileAddresses = lazy(() => import("./routes/profile/Addresses"));
+const Privacy = lazy(() => import("./routes/Privacy"));
+const Terms = lazy(() => import("./routes/Terms"));
 const NotFound = lazy(() => import("./routes/NotFound"));
 
 const AdminLayout = lazy(() => import("./routes/admin/AdminLayout"));
@@ -62,6 +64,8 @@ export default function App() {
                 <Route path="checkout/cancel" element={<CheckoutCancel />} />
                 <Route path="login" element={<Login />} />
                 <Route path="register" element={<Register />} />
+                <Route path="privacy" element={<Privacy />} />
+                <Route path="terms" element={<Terms />} />
 
                 <Route
                   path="account"
