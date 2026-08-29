@@ -1,5 +1,5 @@
 // api/_lib/dispatch.ts
-// Shared by the [resource]/[action]/[...path] route dispatchers.
+// Shared by the [resource] and [action] route dispatchers.
 //
 // Loads the matching handler with a dynamic import inside a try/catch. That
 // matters: with static imports a module that throws while loading (an
@@ -11,11 +11,6 @@ import type { VercelRequest, VercelResponse } from "@vercel/node";
 
 export type Handler = (req: VercelRequest, res: VercelResponse) => unknown;
 export type Routes = Record<string, () => Promise<{ default: Handler }>>;
-
-// Temporary: echo the failure back to the caller so a broken deploy can be
-// diagnosed without dashboard access. Remove once /api is healthy - error
-// details do not belong in a public response.
-const EXPOSE_ERRORS = true;
 
 export async function dispatch(
   req: VercelRequest,
@@ -30,14 +25,9 @@ export async function dispatch(
     const mod = await load();
     return await mod.default(req, res);
   } catch (err: any) {
+    // The detail goes to the runtime log, never to the caller.
     console.error(`[api] ${req.method} ${req.url} failed:`, err);
     if (res.headersSent) return;
-    return res.status(500).json({
-      error: "Server error",
-      ...(EXPOSE_ERRORS && {
-        detail: String(err?.message ?? err),
-        stack: String(err?.stack ?? "").split("\n").slice(0, 6),
-      }),
-    });
+    return res.status(500).json({ error: "Server error" });
   }
 }
