@@ -1,1 +1,0 @@
-import{j as e}from"./index-B3PZiG6h.js";import{P as t}from"./ProductGrid-BTcvI87b.js";function r(){return e.jsx(t,{category:"college",title:"College Collection",subtitle:"Campus-ready styles."})}export{r as default};

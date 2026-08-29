@@ -26,7 +26,7 @@ export default function RecentlyViewed({
 
   return (
     <section className="py-12 border-t border-neutral-200/70">
-      <h3 className="text-2xl md:text-3xl font-black text-[#623903] uppercase tracking-tight mb-8">
+      <h3 className="text-2xl md:text-3xl font-black text-[#1f2937] uppercase tracking-tight mb-8">
         {title}
       </h3>
       <ProductSlider products={items} />

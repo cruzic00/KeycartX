@@ -168,10 +168,10 @@ export default function CustomizationPage() {
     <div className="p-8 md:p-10 max-w-4xl">
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-3xl font-bold text-[#623903] tracking-tight">Customization</h1>
+          <h1 className="text-3xl font-bold text-[#1f2937] tracking-tight">Customization</h1>
           <p className="text-neutral-500 mt-1 text-sm">Drag to reorder · add as many banners and sections as you like.</p>
         </div>
-        <button onClick={save} disabled={saving} className="flex items-center gap-2 px-6 py-3 bg-[#623903] text-white font-bold rounded-xl hover:bg-[#7a4a05] transition disabled:opacity-50">
+        <button onClick={save} disabled={saving} className="flex items-center gap-2 px-6 py-3 bg-[#1f2937] text-white font-bold rounded-xl hover:bg-[#374151] transition disabled:opacity-50">
           {saving ? <Loader2 size={18} className="animate-spin" /> : <Save size={18} />} Save
         </button>
       </div>
@@ -181,15 +181,15 @@ export default function CustomizationPage() {
       {/* MARQUEE */}
       <div className="bg-white rounded-2xl border border-neutral-200/70 shadow-sm p-6 mb-6">
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-lg font-bold text-[#623903]">Top Marquee Strip</h2>
-          <button onClick={addMarquee} className="flex items-center gap-1 text-sm font-bold text-[#623903] px-3 py-1.5 rounded-lg border border-neutral-200 hover:bg-neutral-50">
+          <h2 className="text-lg font-bold text-[#1f2937]">Top Marquee Strip</h2>
+          <button onClick={addMarquee} className="flex items-center gap-1 text-sm font-bold text-[#1f2937] px-3 py-1.5 rounded-lg border border-neutral-200 hover:bg-neutral-50">
             <Plus size={15} /> Add Text
           </button>
         </div>
         <div className="space-y-2">
           {settings.marquee.map((text, i) => (
             <div key={i} className="flex gap-2">
-              <input value={text} onChange={(e) => updateMarquee(i, e.target.value)} className="flex-1 px-3 py-2 border border-neutral-200 rounded-lg focus:ring-2 focus:ring-[#623903] outline-none" />
+              <input value={text} onChange={(e) => updateMarquee(i, e.target.value)} className="flex-1 px-3 py-2 border border-neutral-200 rounded-lg focus:ring-2 focus:ring-[#1f2937] outline-none" />
               <button onClick={() => removeMarquee(i)} className="text-red-500 hover:bg-red-50 px-3 rounded-lg"><Trash2 size={16} /></button>
             </div>
           ))}
@@ -200,18 +200,18 @@ export default function CustomizationPage() {
       <div className="bg-white rounded-2xl border border-neutral-200/70 shadow-sm p-6 mb-6">
         <div className="flex items-center justify-between mb-4">
           <div>
-            <h2 className="text-lg font-bold text-[#623903]">Navigation Menu</h2>
+            <h2 className="text-lg font-bold text-[#1f2937]">Navigation Menu</h2>
             <p className="text-xs text-neutral-400 mt-0.5">Type a name, then pick which page it opens.</p>
           </div>
-          <button onClick={addNav} className="flex items-center gap-1 text-sm font-bold text-[#623903] px-3 py-1.5 rounded-lg border border-neutral-200 hover:bg-neutral-50">
+          <button onClick={addNav} className="flex items-center gap-1 text-sm font-bold text-[#1f2937] px-3 py-1.5 rounded-lg border border-neutral-200 hover:bg-neutral-50">
             <Plus size={15} /> Add Link
           </button>
         </div>
         <div className="space-y-2">
           {settings.nav.map((item, i) => (
             <div key={i} className="flex gap-2">
-              <input value={item.name} onChange={(e) => updateNav(i, { name: e.target.value })} placeholder="Menu name (e.g. ANIME)" className="flex-1 px-3 py-2 border border-neutral-200 rounded-lg focus:ring-2 focus:ring-[#623903] outline-none" />
-              <select value={item.href} onChange={(e) => updateNav(i, { href: e.target.value })} className="flex-1 px-3 py-2 border border-neutral-200 rounded-lg focus:ring-2 focus:ring-[#623903] outline-none bg-white">
+              <input value={item.name} onChange={(e) => updateNav(i, { name: e.target.value })} placeholder="Menu name (e.g. ANIME)" className="flex-1 px-3 py-2 border border-neutral-200 rounded-lg focus:ring-2 focus:ring-[#1f2937] outline-none" />
+              <select value={item.href} onChange={(e) => updateNav(i, { href: e.target.value })} className="flex-1 px-3 py-2 border border-neutral-200 rounded-lg focus:ring-2 focus:ring-[#1f2937] outline-none bg-white">
                 {!linkTargets.some((t) => t.href === item.href) && item.href && (
                   <option value={item.href}>{item.href}</option>
                 )}
@@ -227,8 +227,8 @@ export default function CustomizationPage() {
 
       {/* HERO SLIDES */}
       <div className="flex items-center justify-between mb-3">
-        <h2 className="text-lg font-bold text-[#623903]">Main Hero Banner</h2>
-        <button onClick={addHeroSlide} className="flex items-center gap-1 text-sm font-bold text-[#623903] px-3 py-1.5 rounded-lg border border-neutral-200 hover:bg-neutral-50">
+        <h2 className="text-lg font-bold text-[#1f2937]">Main Hero Banner</h2>
+        <button onClick={addHeroSlide} className="flex items-center gap-1 text-sm font-bold text-[#1f2937] px-3 py-1.5 rounded-lg border border-neutral-200 hover:bg-neutral-50">
           <ImageIcon size={15} /> Add Slide
         </button>
       </div>
@@ -250,12 +250,12 @@ export default function CustomizationPage() {
 
       {/* BLOCKS */}
       <div className="flex items-center justify-between mb-3">
-        <h2 className="text-lg font-bold text-[#623903]">Home Blocks</h2>
+        <h2 className="text-lg font-bold text-[#1f2937]">Home Blocks</h2>
         <div className="flex gap-2">
-          <button onClick={addSection} className="flex items-center gap-1 text-sm font-bold text-[#623903] px-3 py-1.5 rounded-lg border border-neutral-200 hover:bg-neutral-50">
+          <button onClick={addSection} className="flex items-center gap-1 text-sm font-bold text-[#1f2937] px-3 py-1.5 rounded-lg border border-neutral-200 hover:bg-neutral-50">
             <LayoutGrid size={15} /> Add Section
           </button>
-          <button onClick={addBanner} className="flex items-center gap-1 text-sm font-bold text-[#623903] px-3 py-1.5 rounded-lg border border-neutral-200 hover:bg-neutral-50">
+          <button onClick={addBanner} className="flex items-center gap-1 text-sm font-bold text-[#1f2937] px-3 py-1.5 rounded-lg border border-neutral-200 hover:bg-neutral-50">
             <ImageIcon size={15} /> Add Banner
           </button>
         </div>
@@ -267,7 +267,7 @@ export default function CustomizationPage() {
             key={block.id}
             onDragOver={(e) => e.preventDefault()}
             onDrop={() => onDrop(i)}
-            className={`bg-white rounded-2xl border shadow-sm p-5 transition ${dragIndex === i ? "border-[#623903] opacity-60" : "border-neutral-200/70"}`}
+            className={`bg-white rounded-2xl border shadow-sm p-5 transition ${dragIndex === i ? "border-[#1f2937] opacity-60" : "border-neutral-200/70"}`}
           >
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-2">
@@ -291,13 +291,13 @@ export default function CustomizationPage() {
 
             {block.kind === "section" ? (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                <input value={block.title} onChange={(e) => patchBlock(i, { title: e.target.value })} placeholder="Title (e.g. Trending Now)" className="px-3 py-2 border border-neutral-200 rounded-lg focus:ring-2 focus:ring-[#623903] outline-none" />
-                <select value={(block as SectionBlock).source} onChange={(e) => patchBlock(i, { source: e.target.value } as any)} className="px-3 py-2 border border-neutral-200 rounded-lg focus:ring-2 focus:ring-[#623903] outline-none">
+                <input value={block.title} onChange={(e) => patchBlock(i, { title: e.target.value })} placeholder="Title (e.g. Trending Now)" className="px-3 py-2 border border-neutral-200 rounded-lg focus:ring-2 focus:ring-[#1f2937] outline-none" />
+                <select value={(block as SectionBlock).source} onChange={(e) => patchBlock(i, { source: e.target.value } as any)} className="px-3 py-2 border border-neutral-200 rounded-lg focus:ring-2 focus:ring-[#1f2937] outline-none">
                   {SOURCES.map((o) => (
                     <option key={o.value} value={o.value}>{o.label}</option>
                   ))}
                 </select>
-                <input value={block.subtitle} onChange={(e) => patchBlock(i, { subtitle: e.target.value })} placeholder="Subtitle" className="px-3 py-2 border border-neutral-200 rounded-lg focus:ring-2 focus:ring-[#623903] outline-none md:col-span-2" />
+                <input value={block.subtitle} onChange={(e) => patchBlock(i, { subtitle: e.target.value })} placeholder="Subtitle" className="px-3 py-2 border border-neutral-200 rounded-lg focus:ring-2 focus:ring-[#1f2937] outline-none md:col-span-2" />
               </div>
             ) : (
               <MediaFields media={block as BannerBlock} onChange={(p) => patchBlock(i, p)} />
@@ -320,13 +320,13 @@ function MediaFields({ media, onChange }: { media: Media; onChange: (p: Partial<
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
       <div className="space-y-3">
-        <input value={media.title} onChange={(e) => onChange({ title: e.target.value })} placeholder="Title" className="w-full px-3 py-2 border border-neutral-200 rounded-lg focus:ring-2 focus:ring-[#623903] outline-none" />
-        <input value={media.subtitle} onChange={(e) => onChange({ subtitle: e.target.value })} placeholder="Subtitle" className="w-full px-3 py-2 border border-neutral-200 rounded-lg focus:ring-2 focus:ring-[#623903] outline-none" />
+        <input value={media.title} onChange={(e) => onChange({ title: e.target.value })} placeholder="Title" className="w-full px-3 py-2 border border-neutral-200 rounded-lg focus:ring-2 focus:ring-[#1f2937] outline-none" />
+        <input value={media.subtitle} onChange={(e) => onChange({ subtitle: e.target.value })} placeholder="Subtitle" className="w-full px-3 py-2 border border-neutral-200 rounded-lg focus:ring-2 focus:ring-[#1f2937] outline-none" />
         <label className="cursor-pointer inline-flex items-center gap-2 px-4 py-2 bg-neutral-100 hover:bg-neutral-200 rounded-lg text-sm font-medium transition">
           {busy ? <Loader2 size={16} className="animate-spin" /> : <Upload size={16} />} Upload image / video
           <input type="file" accept="image/*,video/*" className="hidden" onChange={(e) => e.target.files?.[0] && handleUpload(e.target.files[0])} />
         </label>
-        <input value={media.mediaUrl} onChange={(e) => onChange({ mediaUrl: e.target.value, mediaType: /\.(mp4|webm|ogg)$/i.test(e.target.value) ? "video" : "image" })} placeholder="…or paste a media URL" className="w-full px-3 py-2 border border-neutral-200 rounded-lg text-xs focus:ring-2 focus:ring-[#623903] outline-none" />
+        <input value={media.mediaUrl} onChange={(e) => onChange({ mediaUrl: e.target.value, mediaType: /\.(mp4|webm|ogg)$/i.test(e.target.value) ? "video" : "image" })} placeholder="…or paste a media URL" className="w-full px-3 py-2 border border-neutral-200 rounded-lg text-xs focus:ring-2 focus:ring-[#1f2937] outline-none" />
       </div>
       <div className="aspect-video rounded-lg overflow-hidden bg-neutral-100 flex items-center justify-center">
         {media.mediaUrl ? (

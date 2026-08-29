@@ -7,7 +7,7 @@ export default function Footer() {
         <div className="grid lg:grid-cols-2 gap-10 items-center ">
           <div>
             <h2 className="text-5xl font-extrabold leading-tight text-white mb-4">
-              JOIN OUR <br /> FAM Mellobebe.com
+              JOIN OUR <br /> FAM KeyCartX
             </h2>
             <p className="mt-4 text-gray-400">
               Premium drops, delivered to your door.
@@ -16,11 +16,14 @@ export default function Footer() {
 
           <div className="sm:text-right">
             <p className="text-sm uppercase tracking-[0.3em] text-gray-400 mb-2">For Enquiries</p>
+            {/* Points at the same working inbox the Navbar support link uses.
+                Change to a branded address only once that mailbox exists —
+                a dead address here silently loses customer enquiries. */}
             <a
-              href="mailto:hello@mellobebe.com"
-              className="text-2xl md:text-3xl font-bold text-white hover:text-accent transition-colors break-all"
+              href="mailto:mynonlineshop@gmail.com"
+              className="text-2xl md:text-3xl font-bold text-white hover:text-neutral-300 transition-colors break-all"
             >
-              hello@mellobebe.com
+              mynonlineshop@gmail.com
             </a>
             <p className="mt-3 text-gray-400 text-sm">We usually reply within 24 hours.</p>
           </div>
@@ -36,7 +39,7 @@ export default function Footer() {
             <a
               key={s.name}
               href="#"
-              className="flex items-center justify-center gap-2 bg-secondary text-[#623903] hover:bg-accent hover:text-[#623903] py-3 rounded text-sm font-semibold transition-all"
+              className="flex items-center justify-center gap-2 bg-secondary text-[#1f2937] hover:bg-neutral-200 hover:text-[#1f2937] py-3 rounded text-sm font-semibold transition-all"
             >
               {s.icon} {s.name}
             </a>
@@ -47,35 +50,35 @@ export default function Footer() {
           <div>
             <h4 className="font-bold mb-3 text-white">CATEGORIES</h4>
             <ul className="space-y-2">
-              <li className="hover:text-accent cursor-pointer transition-colors">OVERSIZED T-SHIRTS</li>
-              <li className="hover:text-accent cursor-pointer transition-colors">NEW ARRIVALS</li>
-              <li className="hover:text-accent cursor-pointer transition-colors">BEST SELLERS</li>
-              <li className="hover:text-accent cursor-pointer transition-colors">CLASSIC FIT</li>
-              <li className="hover:text-accent cursor-pointer transition-colors">CARGOS</li>
+              <li className="hover:text-white cursor-pointer transition-colors">OVERSIZED T-SHIRTS</li>
+              <li className="hover:text-white cursor-pointer transition-colors">NEW ARRIVALS</li>
+              <li className="hover:text-white cursor-pointer transition-colors">BEST SELLERS</li>
+              <li className="hover:text-white cursor-pointer transition-colors">CLASSIC FIT</li>
+              <li className="hover:text-white cursor-pointer transition-colors">CARGOS</li>
             </ul>
           </div>
           <div>
             <h4 className="font-bold mb-3 text-white">COMPANY</h4>
             <ul className="space-y-2">
-              <li className="hover:text-accent cursor-pointer transition-colors">ABOUT US</li>
-              <li className="hover:text-accent cursor-pointer transition-colors">BLOG</li>
-              <li className="hover:text-accent cursor-pointer transition-colors">PRIVACY POLICY</li>
-              <li className="hover:text-accent cursor-pointer transition-colors">TERMS & CONDITIONS</li>
+              <li className="hover:text-white cursor-pointer transition-colors">ABOUT US</li>
+              <li className="hover:text-white cursor-pointer transition-colors">BLOG</li>
+              <li className="hover:text-white cursor-pointer transition-colors">PRIVACY POLICY</li>
+              <li className="hover:text-white cursor-pointer transition-colors">TERMS & CONDITIONS</li>
             </ul>
           </div>
           <div>
             <h4 className="font-bold mb-3 text-white">CUSTOMERS</h4>
             <ul className="space-y-2">
-              <li className="hover:text-accent cursor-pointer transition-colors">CONTACT US</li>
-              <li className="hover:text-accent cursor-pointer transition-colors">FAQS</li>
-              <li className="hover:text-accent cursor-pointer transition-colors">SHIPPING POLICY</li>
-              <li className="hover:text-accent cursor-pointer transition-colors">REFUND POLICY</li>
+              <li className="hover:text-white cursor-pointer transition-colors">CONTACT US</li>
+              <li className="hover:text-white cursor-pointer transition-colors">FAQS</li>
+              <li className="hover:text-white cursor-pointer transition-colors">SHIPPING POLICY</li>
+              <li className="hover:text-white cursor-pointer transition-colors">REFUND POLICY</li>
             </ul>
           </div>
         </div>
 
         <p className="mt-10 text-xs text-gray-500">
-          © {new Date().getFullYear()} Braand.in. All rights reserved.
+          © {new Date().getFullYear()} KeyCartX. All rights reserved.
         </p>
       </div>
     </footer>

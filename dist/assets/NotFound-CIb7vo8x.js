@@ -1,1 +1,0 @@
-import{j as e}from"./index-B3PZiG6h.js";function n(){return e.jsx("div",{className:"flex items-center justify-center min-h-[50vh] text-neutral-400",children:"404 | This page could not be found."})}export{n as default};

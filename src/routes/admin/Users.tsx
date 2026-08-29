@@ -42,11 +42,11 @@ export default function UsersPage() {
               <tr key={u.id} className="hover:bg-neutral-50/60 transition-colors">
                 <td className="px-6 py-4">
                   <div className="flex items-center gap-3">
-                    <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#7a4a05] to-neutral-500 text-white flex items-center justify-center text-sm font-bold shrink-0">
+                    <div className="w-9 h-9 rounded-full bg-gradient-to-br from-[#374151] to-neutral-500 text-white flex items-center justify-center text-sm font-bold shrink-0">
                       {(u.name || u.email || "?")[0]?.toUpperCase()}
                     </div>
                     <div className="min-w-0">
-                      <p className="font-semibold text-[#623903] truncate">{u.name || "—"}</p>
+                      <p className="font-semibold text-[#1f2937] truncate">{u.name || "—"}</p>
                       <p className="text-neutral-500 text-xs truncate">{u.email}</p>
                     </div>
                   </div>

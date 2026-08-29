@@ -20,7 +20,7 @@ nav a::after {
   bottom: 0;
   left: 0;
   height: 2px;
-  background-color: #623903;
+  background-color: var(--accent);
   width: 0%;
   transition: width 0.3s ease;
 }
@@ -30,15 +30,19 @@ nav a:hover::after {
 }
 
 :root {
-  --card: #623903;
-  --muted: #9aa1ac;
-  --card-outline: rgb(255, 255, 255);
-  --card-outline-strong: rgb(255, 255, 255);
+  /* White + grey theme.
+     --primary is the dark grey used for body text and solid buttons;
+     --accent is DARKER than primary so hover/active states read as
+     emphasis rather than fading out. */
+  --card: #f9fafb;
+  --muted: #9ca3af;
+  --card-outline: #e5e7eb;
+  --card-outline-strong: #d1d5db;
 
-  --primary: #623903;
-  --secondary: #f6efdb;
-  --accent: #D4AF37;
-  --accent-dark: #B5952F;
+  --primary: #1f2937;
+  --secondary: #ffffff;
+  --accent: #111827;
+  --accent-dark: #000000;
 }
 
 /* Ported from ProfileForm.tsx's <style jsx> */
@@ -64,8 +68,8 @@ nav a:hover::after {
   outline: none;
 }
 .addr-in:focus {
-  border-color: #623903;
-  box-shadow: 0 0 0 3px rgba(98, 57, 3, 0.12);
+  border-color: #111827;
+  box-shadow: 0 0 0 3px rgba(17, 24, 39, 0.08);
 }
 
 .card {
@@ -73,13 +77,13 @@ nav a:hover::after {
   border-radius: .9rem;
   padding: 1rem;
   border: 1px solid var(--card-outline);
-  box-shadow: 0 1px 5px rgb(255, 255, 255);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
   transition: border-color 200ms ease, box-shadow 200ms ease, transform 200ms ease;
 }
 
 .card:hover {
-  border-color: var(--card-outline-weak);
-  box-shadow: 0 6px 30px rgba(45, 44, 44, 0.341);
+  border-color: var(--card-outline-strong);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
   transform: scale(1.01)
 }
 
@@ -104,27 +108,27 @@ body {
 }
 
 .btn-primary {
-  background: #623903;
-  color: rgb(0, 0, 0);
+  background: var(--primary);
+  color: #ffffff;
 }
 
 .btn-outline {
-  border: 2px solid #333;
+  border: 2px solid var(--primary);
 }
 
 .badge {
   font-size: 0.75rem;
   padding: 0.15rem 0.5rem;
   border-radius: 9999px;
-  background: #ffffff;
+  background: #f3f4f6;
 }
 
 a {
-  color: #623903;
+  color: var(--primary);
 }
 
 a:hover {
-  color: rgb(72, 0, 255);
+  color: var(--accent);
 }
 
 @keyframes slideUp {
@@ -198,6 +202,6 @@ a:hover {
 }
 
 .input-c:focus {
-  border-color: #623903;
-  box-shadow: 0 0 0 3px rgba(98, 57, 3, 0.12);
+  border-color: #111827;
+  box-shadow: 0 0 0 3px rgba(17, 24, 39, 0.08);
 }

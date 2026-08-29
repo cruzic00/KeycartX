@@ -1,1 +1,0 @@
-import{j as t}from"./index-B3PZiG6h.js";import{P as a}from"./ProductGrid-BTcvI87b.js";function o(){return t.jsx(a,{category:"mafia",title:"The Syndicate",subtitle:`"It's not personal. It's strictly fashion."`})}export{o as default};

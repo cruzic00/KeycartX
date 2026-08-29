@@ -54,7 +54,7 @@ export default function Banner({ slides }: { slides: Slide[] }) {
   if (!s) return null;
 
   return (
-    <div className="relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] -mt-8 w-screen h-[80vh] bg-[#623903] group overflow-hidden">
+    <div className="relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] -mt-8 w-screen h-[80vh] bg-[#1f2937] group overflow-hidden">
       {slides.map((slide, i) => (
         <div
           key={i}
@@ -104,7 +104,7 @@ export default function Banner({ slides }: { slides: Slide[] }) {
 
           {s.subtitle && (
             <div className="mt-6 overflow-hidden">
-              <p className="text-accent text-sm md:text-xl font-bold tracking-[0.5em] uppercase bg-black/80 px-5 py-2 inline-block backdrop-blur-md animate-in slide-in-from-bottom-5 fade-in duration-1000 delay-300">
+              <p className="text-white text-sm md:text-xl font-bold tracking-[0.5em] uppercase bg-black/80 px-5 py-2 inline-block backdrop-blur-md animate-in slide-in-from-bottom-5 fade-in duration-1000 delay-300">
                 {s.subtitle}
               </p>
             </div>
@@ -112,7 +112,7 @@ export default function Banner({ slides }: { slides: Slide[] }) {
 
           <Link
             to="/products"
-            className="mt-10 inline-block px-12 py-4 bg-white text-[#623903] text-sm font-black uppercase tracking-widest hover:bg-accent hover:scale-105 transition-all duration-300 animate-in zoom-in fade-in duration-1000 delay-500"
+            className="mt-10 inline-block px-12 py-4 bg-white text-[#1f2937] text-sm font-black uppercase tracking-widest hover:bg-neutral-200 hover:scale-105 transition-all duration-300 animate-in zoom-in fade-in duration-1000 delay-500"
           >
             Shop The Collection
           </Link>
@@ -138,7 +138,7 @@ export default function Banner({ slides }: { slides: Slide[] }) {
           <button
             key={i}
             onClick={() => setIndex(i)}
-            className={`h-[2px] transition-all duration-300 ${i === index ? "w-16 bg-accent" : "w-8 bg-white/30 hover:bg-white/60"
+            className={`h-[2px] transition-all duration-300 ${i === index ? "w-16 bg-white" : "w-8 bg-white/30 hover:bg-white/60"
               }`}
           />
         ))}

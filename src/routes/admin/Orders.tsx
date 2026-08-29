@@ -57,14 +57,14 @@ export default function AdminOrdersPage() {
                           loading="lazy"
                           className="w-10 h-10 rounded object-cover border border-neutral-200 shrink-0"
                         />
-                        <span className="font-mono text-xs text-neutral-500 group-hover:text-[#623903] underline-offset-2 group-hover:underline">
+                        <span className="font-mono text-xs text-neutral-500 group-hover:text-[#1f2937] underline-offset-2 group-hover:underline">
                           #{String(o.id).slice(0, 8)}
                         </span>
                       </Link>
                     </td>
-                    <td className="px-6 py-4 font-medium text-[#623903]">{o.userEmail}</td>
+                    <td className="px-6 py-4 font-medium text-[#1f2937]">{o.userEmail}</td>
                     <td className="px-6 py-4 text-neutral-600">{count} item(s)</td>
-                    <td className="px-6 py-4 font-bold text-[#623903]">
+                    <td className="px-6 py-4 font-bold text-[#1f2937]">
                       ₹{(o.total / 100).toFixed(2)}
                     </td>
                     <td className="px-6 py-4">

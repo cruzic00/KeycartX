@@ -44,7 +44,7 @@ export default function ProductCard({ product }: { product: CardProduct }) {
         )}
 
         {product.rating ? (
-          <span className="absolute bottom-3 left-3 flex items-center gap-1 bg-white/90 text-[#623903] text-xs font-bold px-2 py-1 rounded-full shadow-sm backdrop-blur-sm">
+          <span className="absolute bottom-3 left-3 flex items-center gap-1 bg-white/90 text-[#1f2937] text-xs font-bold px-2 py-1 rounded-full shadow-sm backdrop-blur-sm">
             <span className="text-yellow-500">★</span>
             {product.rating.toFixed(1)}
             {product.reviews ? <span className="text-neutral-400 font-medium">({product.reviews})</span> : null}
@@ -54,7 +54,7 @@ export default function ProductCard({ product }: { product: CardProduct }) {
 
       <div className="flex flex-col gap-1 p-4">
         <div className="flex items-baseline gap-2 flex-wrap">
-          <span className="text-lg font-bold text-[#623903]">₹{price.toFixed(0)}</span>
+          <span className="text-lg font-bold text-[#1f2937]">₹{price.toFixed(0)}</span>
           {off > 0 && (
             <>
               <span className="text-sm text-neutral-400 line-through">₹{mrp.toFixed(0)}</span>

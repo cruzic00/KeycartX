@@ -19,9 +19,9 @@ export default function Sidebar({ user }: { user: { username: string; email: str
 
   return (
     <div className="flex flex-col h-full">
-      <div className="px-8 py-7 border-b border-[#7a4a05]/80">
+      <div className="px-8 py-7 border-b border-[#374151]/80">
         <h1 className="text-2xl font-black tracking-tighter text-white">
-          TEE<span className="text-yellow-400">ZIDE</span>
+          KeyCart<span className="text-neutral-400">X</span>
         </h1>
         <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-neutral-500 mt-1">Admin Panel</p>
       </div>
@@ -34,8 +34,8 @@ export default function Sidebar({ user }: { user: { username: string; email: str
               key={link.href}
               to={link.href}
               className={`flex items-center gap-4 px-6 py-4 rounded-xl text-base font-medium transition-all ${isActive
-                  ? "bg-yellow-500 text-[#623903] shadow-lg shadow-yellow-500/20"
-                  : "text-neutral-400 hover:text-white hover:bg-[#7a4a05]"
+                  ? "bg-white text-[#1f2937] shadow-lg shadow-black/20"
+                  : "text-neutral-400 hover:text-white hover:bg-[#374151]"
                 }`}
             >
               <link.icon size={24} />
@@ -45,10 +45,10 @@ export default function Sidebar({ user }: { user: { username: string; email: str
         })}
       </div>
 
-      <div className="p-4 border-t border-[#7a4a05]">
-        <div className="bg-[#7a4a05] rounded-xl p-4 flex items-center gap-3 mb-4">
+      <div className="p-4 border-t border-[#374151]">
+        <div className="bg-[#374151] rounded-xl p-4 flex items-center gap-3 mb-4">
           <div className="w-10 h-10 rounded-full bg-neutral-700 overflow-hidden">
-            <div className="w-full h-full bg-yellow-500 flex items-center justify-center font-bold text-[#623903]">
+            <div className="w-full h-full bg-white flex items-center justify-center font-bold text-[#1f2937]">
               {user.username[0]}
             </div>
           </div>

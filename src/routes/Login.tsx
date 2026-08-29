@@ -57,7 +57,7 @@ export default function LoginPage() {
     // Logged in — show a loader while the redirect effect runs (no blank flash).
     return (
       <div className="min-h-[80vh] flex flex-col items-center justify-center gap-3 text-neutral-500">
-        <svg className="animate-spin h-7 w-7 text-[#623903]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+        <svg className="animate-spin h-7 w-7 text-[#1f2937]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
           <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
           <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
         </svg>
@@ -96,7 +96,7 @@ export default function LoginPage() {
                 type="email"
                 autoComplete="email"
                 required
-                className="appearance-none rounded-none relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md rounded-b-md focus:outline-none focus:ring-[#623903] focus:border-[#623903] focus:z-10 sm:text-sm transition-all"
+                className="appearance-none rounded-none relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md rounded-b-md focus:outline-none focus:ring-[#1f2937] focus:border-[#1f2937] focus:z-10 sm:text-sm transition-all"
                 placeholder="Email address"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -112,7 +112,7 @@ export default function LoginPage() {
                 type={showPassword ? "text" : "password"}
                 autoComplete="current-password"
                 required
-                className="appearance-none rounded-none relative block w-full px-3 py-3 pr-11 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md rounded-b-md focus:outline-none focus:ring-[#623903] focus:border-[#623903] focus:z-10 sm:text-sm transition-all"
+                className="appearance-none rounded-none relative block w-full px-3 py-3 pr-11 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md rounded-b-md focus:outline-none focus:ring-[#1f2937] focus:border-[#1f2937] focus:z-10 sm:text-sm transition-all"
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -132,7 +132,7 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={loading}
-              className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-[#623903] hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#623903] disabled:opacity-50 transition-all"
+              className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-[#1f2937] hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#1f2937] disabled:opacity-50 transition-all"
             >
               {loading ? (
                 <span className="flex items-center">
@@ -150,7 +150,7 @@ export default function LoginPage() {
 
           <div className="flex items-center justify-between mt-4">
             <div className="text-sm">
-              <Link to="/register" className="font-medium text-[#623903] hover:text-gray-700 underline">
+              <Link to="/register" className="font-medium text-[#1f2937] hover:text-gray-700 underline">
                 Don't have an account? Register
               </Link>
             </div>

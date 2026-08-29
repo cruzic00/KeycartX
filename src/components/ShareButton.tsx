@@ -10,7 +10,7 @@ export default function ShareButton({ title }: { title?: string }) {
     const url = typeof window !== "undefined" ? window.location.href : "";
     if (typeof navigator !== "undefined" && (navigator as any).share) {
       try {
-        await (navigator as any).share({ title: title || "Mello", url });
+        await (navigator as any).share({ title: title || "KeyCartX", url });
       } catch {
         /* user cancelled */
       }

@@ -10,8 +10,8 @@ function AdminShell() {
   const adminUser = { username: user?.name || "Admin", email: user?.email ?? "" };
 
   return (
-    <div className="min-h-screen bg-neutral-50 flex font-sans text-[#623903]">
-      <aside className="w-72 bg-[#623903] text-white flex-col hidden md:flex shadow-2xl z-20 sticky top-0 h-screen">
+    <div className="min-h-screen bg-neutral-50 flex font-sans text-[#1f2937]">
+      <aside className="w-72 bg-[#1f2937] text-white flex-col hidden md:flex shadow-2xl z-20 sticky top-0 h-screen">
         <Sidebar user={adminUser} />
       </aside>
 

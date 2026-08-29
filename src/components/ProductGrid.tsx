@@ -30,7 +30,7 @@ export default function ProductGrid({
     <section className="relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen">
       <div className="max-w-[1600px] mx-auto px-5 lg:px-10 pt-3 pb-10 grid gap-6">
         <div className="text-center max-w-3xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tight text-[#623903]">
+          <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tight text-[#1f2937]">
             {title}
           </h2>
           {subtitle && <p className="text-neutral-500 mt-3">{subtitle}</p>}

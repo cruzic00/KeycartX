@@ -52,8 +52,13 @@ export default function Navbar({ links }: { links?: { name: string; href: string
     <nav className="sticky top-0 z-50 bg-secondary border-b border-black/5 shadow-sm transition-all duration-300">
       <div className="max-w-7xl mx-auto px-6 py-2 flex justify-between items-center">
         <div className="flex-shrink-0">
-          <Link to="/" className="group flex items-center gap-2">
-            <img src="/media/Mello%20Logo.png" alt="Mello" className="h-12 w-auto object-contain transition-transform group-hover:scale-105" />
+          {/* Text wordmark: the old logo file is a PNG that reads "MELLO",
+              which cannot be edited in code. Swap this back to an <img> once
+              a KeyCartX logo asset exists. */}
+          <Link to="/" className="group flex items-center h-12">
+            <span className="text-2xl font-black tracking-tighter text-[#1f2937] transition-transform group-hover:scale-105">
+              KeyCart<span className="text-neutral-400">X</span>
+            </span>
           </Link>
         </div>
 
@@ -87,7 +92,7 @@ export default function Navbar({ links }: { links?: { name: string; href: string
               {!user ? (
                 <Link
                   to={`/login?redirect=${pathname}`}
-                  className="flex items-center gap-2 px-4 py-2 bg-primary text-white text-xs font-bold tracking-wider rounded-full hover:bg-[#7a4a05] transition-all shadow-md hover:shadow-lg"
+                  className="flex items-center gap-2 px-4 py-2 bg-primary text-white text-xs font-bold tracking-wider rounded-full hover:bg-[#374151] transition-all shadow-md hover:shadow-lg"
                 >
                   LOGIN
                 </Link>

@@ -42,7 +42,7 @@ type Product = {
 
 const EMPTY_PRODUCT: Product = {
     name: "",
-    brand: "Mello",
+    brand: "KeyCartX",
     category: "",
     subCategory: "",
     productType: "",
@@ -301,7 +301,7 @@ export default function StocksPage() {
                     </button>
                     <button
                         onClick={() => { setFormData(EMPTY_PRODUCT); setEditingId(null); setIsModalOpen(true); }}
-                        className="flex items-center gap-3 px-6 py-3 bg-[#623903] text-white rounded-xl hover:bg-[#7a4a05] transition shadow-lg shadow-[#623903]/20 font-bold text-base"
+                        className="flex items-center gap-3 px-6 py-3 bg-[#1f2937] text-white rounded-xl hover:bg-[#374151] transition shadow-lg shadow-[#1f2937]/20 font-bold text-base"
                     >
                         <Plus size={24} />
                         Add Item
@@ -311,8 +311,8 @@ export default function StocksPage() {
 
             {/* VIEW TOGGLE */}
             <div className="inline-flex bg-white border border-gray-200 rounded-xl p-1 mb-6">
-                <button onClick={() => setView("products")} className={`px-5 py-2 rounded-lg text-sm font-bold transition ${view === "products" ? "bg-[#623903] text-white" : "text-gray-600 hover:text-gray-900"}`}>Products</button>
-                <button onClick={() => setView("categories")} className={`px-5 py-2 rounded-lg text-sm font-bold transition ${view === "categories" ? "bg-[#623903] text-white" : "text-gray-600 hover:text-gray-900"}`}>Categories</button>
+                <button onClick={() => setView("products")} className={`px-5 py-2 rounded-lg text-sm font-bold transition ${view === "products" ? "bg-[#1f2937] text-white" : "text-gray-600 hover:text-gray-900"}`}>Products</button>
+                <button onClick={() => setView("categories")} className={`px-5 py-2 rounded-lg text-sm font-bold transition ${view === "categories" ? "bg-[#1f2937] text-white" : "text-gray-600 hover:text-gray-900"}`}>Categories</button>
             </div>
 
             {view === "categories" && <CategoryManager />}
@@ -326,7 +326,7 @@ export default function StocksPage() {
                     <input
                         type="text"
                         placeholder="Search products..."
-                        className="w-full pl-12 pr-6 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#623903] text-base"
+                        className="w-full pl-12 pr-6 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#1f2937] text-base"
                         value={searchTerm}
                         onChange={e => setSearchTerm(e.target.value)}
                     />
@@ -334,7 +334,7 @@ export default function StocksPage() {
                 <select
                     value={categoryFilter}
                     onChange={e => setCategoryFilter(e.target.value)}
-                    className="border border-gray-200 rounded-xl px-6 py-3 text-base focus:outline-none focus:ring-2 focus:ring-[#623903] capitalize"
+                    className="border border-gray-200 rounded-xl px-6 py-3 text-base focus:outline-none focus:ring-2 focus:ring-[#1f2937] capitalize"
                 >
                     <option value="">All Categories</option>
                     {categories.map(c => (
@@ -353,7 +353,7 @@ export default function StocksPage() {
                                 <th className="px-6 py-4">Product Name</th>
                                 <th className="px-6 py-4">Category</th>
                                 <th className="px-6 py-4 hidden sm:table-cell">MRP</th>
-                                <th className="px-6 py-4 bg-neutral-100 text-[#7a4a05]">App Price</th>
+                                <th className="px-6 py-4 bg-neutral-100 text-[#374151]">App Price</th>
                                 <th className="px-6 py-4">Status</th>
                                 <th className="px-6 py-4 text-center">Actions</th>
                             </tr>
@@ -373,7 +373,7 @@ export default function StocksPage() {
                                         </td>
                                         <td className="px-6 py-4 capitalize">{p.category || "-"}</td>
                                         <td className="px-6 py-4 text-gray-500 hidden sm:table-cell">₹{p.mrp}</td>
-                                        <td className="px-6 py-4 font-bold text-[#623903] bg-neutral-100 border-x border-neutral-200">₹{calculateAppPrice(p)}</td>
+                                        <td className="px-6 py-4 font-bold text-[#1f2937] bg-neutral-100 border-x border-neutral-200">₹{calculateAppPrice(p)}</td>
                                         <td className="px-6 py-4">
                                             <span className={`px-2 py-1 rounded text-xs font-bold ${p.status === 'Active' ? 'bg-green-100 text-green-700' :
                                                 p.status === 'Offer Active' ? 'bg-yellow-100 text-yellow-700' :
@@ -424,13 +424,13 @@ export default function StocksPage() {
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <div className="col-span-2">
                                         <label className="block text-sm font-medium text-gray-700 mb-1">Product Name</label>
-                                        <input required name="name" value={formData.name} onChange={handleInputChange} className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#623903] outline-none" placeholder="e.g. Black Pepper 100g" />
+                                        <input required name="name" value={formData.name} onChange={handleInputChange} className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#1f2937] outline-none" placeholder="e.g. Black Pepper 100g" />
                                     </div>
-                                    {/* Brand is hardcoded to Mello, hidden from user */}
+                                    {/* Brand is hardcoded to KeyCartX, hidden from user */}
 
                                     <div>
                                         <label className="block text-sm font-medium text-gray-700 mb-1">Category</label>
-                                        <select name="category" value={formData.category} onChange={handleInputChange} className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#623903] outline-none capitalize">
+                                        <select name="category" value={formData.category} onChange={handleInputChange} className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#1f2937] outline-none capitalize">
                                             <option value="">Select Category</option>
                                             {cats.map((c) => (
                                                 <option key={c.name} value={c.name} className="capitalize">{c.name}</option>
@@ -439,7 +439,7 @@ export default function StocksPage() {
                                     </div>
                                     <div>
                                         <label className="block text-sm font-medium text-gray-700 mb-1">Sub Category</label>
-                                        <select name="subCategory" value={formData.subCategory} onChange={handleInputChange} className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#623903] outline-none" disabled={!formData.category}>
+                                        <select name="subCategory" value={formData.subCategory} onChange={handleInputChange} className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#1f2937] outline-none" disabled={!formData.category}>
                                             <option value="">{formData.category ? "Select Sub Category" : "Pick a category first"}</option>
                                             {subOptions.map((s) => (
                                                 <option key={s} value={s}>{s}</option>
@@ -448,7 +448,7 @@ export default function StocksPage() {
                                     </div>
                                     <div>
                                         <label className="block text-sm font-medium text-gray-700 mb-1">Unit</label>
-                                        <input name="unit" value={formData.unit} onChange={handleInputChange} className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#623903] outline-none" placeholder="e.g. 100g" />
+                                        <input name="unit" value={formData.unit} onChange={handleInputChange} className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#1f2937] outline-none" placeholder="e.g. 100g" />
                                     </div>
                                     <div>
                                         <label className="block text-sm font-medium text-gray-700 mb-1">Product Image</label>
@@ -470,7 +470,7 @@ export default function StocksPage() {
                                     </div>
                                     <div>
                                         <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
-                                        <select name="status" value={formData.status} onChange={handleInputChange} className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#623903] outline-none">
+                                        <select name="status" value={formData.status} onChange={handleInputChange} className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#1f2937] outline-none">
                                             <option value="Active">Active</option>
                                             <option value="Not Active">Not Active</option>
                                             <option value="Offer Active">Offer Active</option>
@@ -491,7 +491,7 @@ export default function StocksPage() {
                                             </button>
                                         </div>
                                     ))}
-                                    <label className="cursor-pointer w-20 h-20 rounded-lg border-2 border-dashed border-gray-300 flex flex-col items-center justify-center text-gray-400 hover:border-[#623903] hover:text-[#623903] transition">
+                                    <label className="cursor-pointer w-20 h-20 rounded-lg border-2 border-dashed border-gray-300 flex flex-col items-center justify-center text-gray-400 hover:border-[#1f2937] hover:text-[#1f2937] transition">
                                         {galleryUploading ? <Loader2 size={18} className="animate-spin" /> : <Plus size={20} />}
                                         <span className="text-[10px] mt-1">Add</span>
                                         <input type="file" accept="image/*" className="hidden" onChange={(e) => e.target.files?.[0] && addGalleryImage(e.target.files[0])} />
@@ -507,19 +507,19 @@ export default function StocksPage() {
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <div>
                                         <label className="block text-sm font-medium text-gray-700 mb-1">Product Type</label>
-                                        <input name="productType" value={formData.productType || ""} onChange={handleInputChange} placeholder="e.g. Oversized T-shirt" className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#623903] outline-none" />
+                                        <input name="productType" value={formData.productType || ""} onChange={handleInputChange} placeholder="e.g. Oversized T-shirt" className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#1f2937] outline-none" />
                                     </div>
                                     <div>
                                         <label className="block text-sm font-medium text-gray-700 mb-1">Fabric</label>
-                                        <input name="fabric" value={formData.fabric || ""} onChange={handleInputChange} placeholder="e.g. 100% Cotton" className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#623903] outline-none" />
+                                        <input name="fabric" value={formData.fabric || ""} onChange={handleInputChange} placeholder="e.g. 100% Cotton" className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#1f2937] outline-none" />
                                     </div>
                                     <div>
                                         <label className="block text-sm font-medium text-gray-700 mb-1">Fit</label>
-                                        <input name="fit" value={formData.fit || ""} onChange={handleInputChange} placeholder="e.g. Oversized / Regular" className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#623903] outline-none" />
+                                        <input name="fit" value={formData.fit || ""} onChange={handleInputChange} placeholder="e.g. Oversized / Regular" className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#1f2937] outline-none" />
                                     </div>
                                     <div>
                                         <label className="block text-sm font-medium text-gray-700 mb-1">Closure</label>
-                                        <input name="closure" value={formData.closure || ""} onChange={handleInputChange} placeholder="e.g. Pullover" className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#623903] outline-none" />
+                                        <input name="closure" value={formData.closure || ""} onChange={handleInputChange} placeholder="e.g. Pullover" className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#1f2937] outline-none" />
                                     </div>
                                 </div>
                             </div>
@@ -542,7 +542,7 @@ export default function StocksPage() {
                                                             placeholder="Review Text"
                                                             value={review.text}
                                                             onChange={(e) => handleReviewChange(index, "text", e.target.value)}
-                                                            className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-1 focus:ring-[#623903] outline-none text-sm"
+                                                            className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-1 focus:ring-[#1f2937] outline-none text-sm"
                                                             rows={2}
                                                         />
                                                         <div className="flex gap-3">
@@ -550,7 +550,7 @@ export default function StocksPage() {
                                                                 placeholder="Reviewer Name"
                                                                 value={review.reviewer}
                                                                 onChange={(e) => handleReviewChange(index, "reviewer", e.target.value)}
-                                                                className="flex-1 px-3 py-2 border border-gray-200 rounded-lg focus:ring-1 focus:ring-[#623903] outline-none text-sm"
+                                                                className="flex-1 px-3 py-2 border border-gray-200 rounded-lg focus:ring-1 focus:ring-[#1f2937] outline-none text-sm"
                                                             />
                                                             <div className="flex items-center gap-2">
                                                                 {review.image && <img src={review.image} alt="Review" loading="lazy" className="w-8 h-8 rounded object-cover border" />}
@@ -571,7 +571,7 @@ export default function StocksPage() {
                                         ) : (
                                             <p className="text-xs text-gray-400 italic mb-2">No reviews added yet.</p>
                                         )}
-                                        <button type="button" onClick={addReview} className="text-sm text-[#623903] font-bold hover:underline flex items-center gap-1">
+                                        <button type="button" onClick={addReview} className="text-sm text-[#1f2937] font-bold hover:underline flex items-center gap-1">
                                             <Plus size={16} /> Add Review
                                         </button>
                                     </div>
@@ -586,7 +586,7 @@ export default function StocksPage() {
                                                         newRecs[index] = e.target.value;
                                                         setFormData(prev => ({ ...prev, recommendation: newRecs }));
                                                     }}
-                                                    className="flex-1 px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#623903] outline-none"
+                                                    className="flex-1 px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#1f2937] outline-none"
                                                     placeholder="Product ID"
                                                 />
                                                 <button type="button" onClick={() => {
@@ -596,21 +596,21 @@ export default function StocksPage() {
                                                 }} className="text-red-500 hover:bg-red-50 p-2 rounded-lg"><Trash2 size={18} /></button>
                                             </div>
                                         ))}
-                                        <button type="button" onClick={() => setFormData(prev => ({ ...prev, recommendation: [...(prev.recommendation || []), ""] }))} className="text-sm text-[#623903] font-bold hover:underline flex items-center gap-1">
+                                        <button type="button" onClick={() => setFormData(prev => ({ ...prev, recommendation: [...(prev.recommendation || []), ""] }))} className="text-sm text-[#1f2937] font-bold hover:underline flex items-center gap-1">
                                             <Plus size={16} /> Add Related Product ID
                                         </button>
                                     </div>
                                     <div>
                                         <label className="block text-sm font-medium text-gray-700 mb-1">Replacement Policy</label>
-                                        <input name="replacementPolicy" value={formData.replacementPolicy} onChange={handleInputChange} className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#623903] outline-none" />
+                                        <input name="replacementPolicy" value={formData.replacementPolicy} onChange={handleInputChange} className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#1f2937] outline-none" />
                                     </div>
                                     <div className="flex items-center gap-6">
                                         <label className="flex items-center gap-2 cursor-pointer">
-                                            <input type="checkbox" name="freeDelivery" checked={formData.freeDelivery} onChange={handleInputChange} className="w-5 h-5 text-[#623903] rounded focus:ring-[#623903]" />
+                                            <input type="checkbox" name="freeDelivery" checked={formData.freeDelivery} onChange={handleInputChange} className="w-5 h-5 text-[#1f2937] rounded focus:ring-[#1f2937]" />
                                             <span className="text-sm font-medium text-gray-700">Free Delivery</span>
                                         </label>
                                         <label className="flex items-center gap-2 cursor-pointer">
-                                            <input type="checkbox" name="trending" checked={!!formData.trending} onChange={handleInputChange} className="w-5 h-5 text-yellow-500 rounded focus:ring-yellow-500" />
+                                            <input type="checkbox" name="trending" checked={!!formData.trending} onChange={handleInputChange} className="w-5 h-5 text-neutral-700 rounded focus:ring-neutral-700" />
                                             <span className="text-sm font-medium text-gray-700">⭐ Show in Trending</span>
                                         </label>
                                     </div>
@@ -618,11 +618,11 @@ export default function StocksPage() {
                                         <label className="block text-sm font-medium text-gray-700 mb-2">About This Item (Bullet Points)</label>
                                         {formData.aboutItems?.map((item, index) => (
                                             <div key={index} className="flex gap-2 mb-2">
-                                                <input value={item} onChange={(e) => handleArrayChange(index, e.target.value, "aboutItems")} className="flex-1 px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#623903] outline-none" placeholder="Feature point..." />
+                                                <input value={item} onChange={(e) => handleArrayChange(index, e.target.value, "aboutItems")} className="flex-1 px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#1f2937] outline-none" placeholder="Feature point..." />
                                                 <button type="button" onClick={() => removeArrayItem(index, "aboutItems")} className="p-2 text-red-500 hover:bg-red-50 rounded-lg"><Trash2 size={16} /></button>
                                             </div>
                                         ))}
-                                        <button type="button" onClick={() => addArrayItem("aboutItems")} className="text-sm text-[#623903] font-bold hover:underline flex items-center gap-1">
+                                        <button type="button" onClick={() => addArrayItem("aboutItems")} className="text-sm text-[#1f2937] font-bold hover:underline flex items-center gap-1">
                                             <Plus size={16} /> Add Point
                                         </button>
                                     </div>
@@ -631,12 +631,12 @@ export default function StocksPage() {
                                         <label className="block text-sm font-medium text-gray-700 mb-2">Technical Details</label>
                                         {formData.technicalDetails?.map((detail, index) => (
                                             <div key={index} className="flex gap-2 mb-2">
-                                                <input value={detail.label} onChange={(e) => handleTechnicalDetailChange(index, "label", e.target.value)} className="w-1/3 px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#623903] outline-none" placeholder="Label (e.g. Material)" />
-                                                <input value={detail.value} onChange={(e) => handleTechnicalDetailChange(index, "value", e.target.value)} className="flex-1 px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#623903] outline-none" placeholder="Value (e.g. Cotton)" />
+                                                <input value={detail.label} onChange={(e) => handleTechnicalDetailChange(index, "label", e.target.value)} className="w-1/3 px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#1f2937] outline-none" placeholder="Label (e.g. Material)" />
+                                                <input value={detail.value} onChange={(e) => handleTechnicalDetailChange(index, "value", e.target.value)} className="flex-1 px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#1f2937] outline-none" placeholder="Value (e.g. Cotton)" />
                                                 <button type="button" onClick={() => removeTechnicalDetail(index)} className="p-2 text-red-500 hover:bg-red-50 rounded-lg"><Trash2 size={16} /></button>
                                             </div>
                                         ))}
-                                        <button type="button" onClick={addTechnicalDetail} className="text-sm text-[#623903] font-bold hover:underline flex items-center gap-1">
+                                        <button type="button" onClick={addTechnicalDetail} className="text-sm text-[#1f2937] font-bold hover:underline flex items-center gap-1">
                                             <Plus size={16} /> Add Technical Detail
                                         </button>
                                     </div>
@@ -649,15 +649,15 @@ export default function StocksPage() {
                                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                                     <div>
                                         <label className="block text-xs font-bold text-gray-500 mb-1">MRP</label>
-                                        <input type="number" name="mrp" value={formData.mrp} onChange={handleInputChange} className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#623903] outline-none" />
+                                        <input type="number" name="mrp" value={formData.mrp} onChange={handleInputChange} className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#1f2937] outline-none" />
                                     </div>
                                     <div>
-                                        <label className="block text-xs font-bold text-[#623903] mb-1">Sale Price (₹)</label>
-                                        <input type="number" name="supplierPrice" value={formData.supplierPrice} onChange={handleInputChange} className="w-full px-4 py-2 border-2 border-neutral-200 rounded-lg focus:ring-2 focus:ring-[#623903] outline-none font-bold" />
+                                        <label className="block text-xs font-bold text-[#1f2937] mb-1">Sale Price (₹)</label>
+                                        <input type="number" name="supplierPrice" value={formData.supplierPrice} onChange={handleInputChange} className="w-full px-4 py-2 border-2 border-neutral-200 rounded-lg focus:ring-2 focus:ring-[#1f2937] outline-none font-bold" />
                                     </div>
                                     <div className="bg-neutral-100 p-4 rounded-xl border border-neutral-200 flex flex-col justify-center">
-                                        <label className="block text-xs font-bold text-[#7a4a05] mb-1">Final Price</label>
-                                        <div className="text-3xl font-black text-[#623903]">₹{formData.appPrice}</div>
+                                        <label className="block text-xs font-bold text-[#374151] mb-1">Final Price</label>
+                                        <div className="text-3xl font-black text-[#1f2937]">₹{formData.appPrice}</div>
                                         <p className="text-xs text-neutral-500 mt-1 opacity-80">Shown to customers</p>
                                     </div>
                                 </div>
@@ -665,7 +665,7 @@ export default function StocksPage() {
 
                             <div className="flex justify-end gap-3 pt-6 border-t border-gray-100">
                                 <button type="button" onClick={() => setIsModalOpen(false)} className="px-6 py-2 bg-white text-gray-700 font-bold rounded-lg border border-gray-200 hover:bg-gray-50 transition">Cancel</button>
-                                <button type="submit" className="px-8 py-2 bg-[#623903] text-white font-bold rounded-lg hover:bg-[#7a4a05] transition shadow-lg shadow-[#623903]/20 flex items-center gap-2">
+                                <button type="submit" className="px-8 py-2 bg-[#1f2937] text-white font-bold rounded-lg hover:bg-[#374151] transition shadow-lg shadow-[#1f2937]/20 flex items-center gap-2">
                                     <Save size={18} />
                                     Save Item
                                 </button>

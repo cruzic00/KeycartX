@@ -14,7 +14,7 @@ export function PageHeader({
   return (
     <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
       <div>
-        <h1 className="text-3xl font-bold text-[#623903] tracking-tight">{title}</h1>
+        <h1 className="text-3xl font-bold text-[#1f2937] tracking-tight">{title}</h1>
         {subtitle && <p className="text-neutral-500 mt-1 text-sm">{subtitle}</p>}
       </div>
       {action}
@@ -39,7 +39,7 @@ const STATUS_STYLES: Record<string, string> = {
   shipped: "bg-blue-50 text-blue-700 ring-blue-600/20",
   cancelled: "bg-red-50 text-red-700 ring-red-600/20",
   razorpay: "bg-indigo-50 text-indigo-700 ring-indigo-600/20",
-  admin: "bg-[#623903] text-white ring-[#623903]/10",
+  admin: "bg-[#1f2937] text-white ring-[#1f2937]/10",
   user: "bg-neutral-100 text-neutral-600 ring-neutral-500/20",
 };
 

@@ -19,7 +19,7 @@ export default function AccountPage() {
 
   return (
     <div className="max-w-5xl mx-auto py-10 px-2">
-      <h1 className="text-3xl font-bold text-[#623903]">Hello, {name}</h1>
+      <h1 className="text-3xl font-bold text-[#1f2937]">Hello, {name}</h1>
       <p className="text-neutral-500 mt-1 mb-8">Manage your account, orders and settings.</p>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -30,11 +30,11 @@ export default function AccountPage() {
               href={c.href}
               className="group flex items-start gap-4 bg-white border border-neutral-200/70 rounded-2xl p-6 shadow-sm hover:shadow-xl hover:-translate-y-0.5 transition-all"
             >
-              <div className="p-3 rounded-xl bg-neutral-100 text-[#7a4a05] group-hover:bg-[#623903] group-hover:text-white transition-colors shrink-0">
+              <div className="p-3 rounded-xl bg-neutral-100 text-[#374151] group-hover:bg-[#1f2937] group-hover:text-white transition-colors shrink-0">
                 <c.icon size={24} />
               </div>
               <div className="flex-1 min-w-0">
-                <h3 className="font-bold text-[#623903] flex items-center gap-1">
+                <h3 className="font-bold text-[#1f2937] flex items-center gap-1">
                   {c.title}
                   <ChevronRight size={16} className="text-neutral-400 transition-transform group-hover:translate-x-1" />
                 </h3>
@@ -47,11 +47,11 @@ export default function AccountPage() {
               to={c.href}
               className="group flex items-start gap-4 bg-white border border-neutral-200/70 rounded-2xl p-6 shadow-sm hover:shadow-xl hover:-translate-y-0.5 transition-all"
             >
-              <div className="p-3 rounded-xl bg-neutral-100 text-[#7a4a05] group-hover:bg-[#623903] group-hover:text-white transition-colors shrink-0">
+              <div className="p-3 rounded-xl bg-neutral-100 text-[#374151] group-hover:bg-[#1f2937] group-hover:text-white transition-colors shrink-0">
                 <c.icon size={24} />
               </div>
               <div className="flex-1 min-w-0">
-                <h3 className="font-bold text-[#623903] flex items-center gap-1">
+                <h3 className="font-bold text-[#1f2937] flex items-center gap-1">
                   {c.title}
                   <ChevronRight size={16} className="text-neutral-400 transition-transform group-hover:translate-x-1" />
                 </h3>

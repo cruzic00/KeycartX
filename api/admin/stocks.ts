@@ -21,7 +21,7 @@ function toAdminShape(row: any) {
     _id: row.id,
     name: row.title,
     slug: row.slug,
-    brand: meta.brand ?? "Mello",
+    brand: meta.brand ?? "KeyCartX",
     category: row.category ?? "",
     subCategory: row.sub_category ?? "",
     unit: meta.unit ?? "1pc",
@@ -69,7 +69,7 @@ function toDbColumns(body: any) {
     reviews_count: Number(body.reviewsCount ?? 0),
     in_stock: body.status ? body.status !== "Not Active" : true,
     meta: {
-      brand: body.brand ?? "Mello",
+      brand: body.brand ?? "KeyCartX",
       unit: body.unit ?? "1pc",
       cgst: Number(body.cgst ?? 0),
       sgst: Number(body.sgst ?? 0),

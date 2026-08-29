@@ -30,7 +30,7 @@ export default function AddressesPage() {
   const [editing, setEditing] = useState<number | "new" | null>(null);
   const [form, setForm] = useState<Address>(EMPTY);
 
-  const key = () => `mello:addresses:${user?.email || "guest"}`;
+  const key = () => `keycartx:addresses:${user?.email || "guest"}`;
 
   useEffect(() => {
     try {
@@ -79,7 +79,7 @@ export default function AddressesPage() {
   }
 
   const formCard = (
-    <form onSubmit={submit} className="bg-white rounded-2xl border border-[#623903]/30 ring-1 ring-[#623903]/20 shadow-sm p-5 space-y-3">
+    <form onSubmit={submit} className="bg-white rounded-2xl border border-[#1f2937]/30 ring-1 ring-[#1f2937]/20 shadow-sm p-5 space-y-3">
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         <input required value={form.name} onChange={(e) => update("name", e.target.value)} placeholder="Full Name" className="addr-in" />
         <input required value={form.phone} onChange={(e) => update("phone", e.target.value)} placeholder="Phone Number" className="addr-in" />
@@ -95,7 +95,7 @@ export default function AddressesPage() {
         <button type="button" onClick={() => setEditing(null)} className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg border border-neutral-200 text-sm font-bold text-neutral-600 hover:bg-neutral-50 transition">
           <X size={15} /> Cancel
         </button>
-        <button type="submit" className="inline-flex items-center gap-1.5 px-5 py-2 rounded-lg bg-[#623903] text-white text-sm font-bold hover:bg-[#7a4a05] transition">
+        <button type="submit" className="inline-flex items-center gap-1.5 px-5 py-2 rounded-lg bg-[#1f2937] text-white text-sm font-bold hover:bg-[#374151] transition">
           <Save size={15} /> Save
         </button>
       </div>
@@ -104,22 +104,22 @@ export default function AddressesPage() {
 
   return (
     <div className="max-w-3xl mx-auto py-8">
-      <Link to="/profile" className="inline-flex items-center gap-1 text-sm font-medium text-neutral-500 hover:text-[#623903] mb-6">
+      <Link to="/profile" className="inline-flex items-center gap-1 text-sm font-medium text-neutral-500 hover:text-[#1f2937] mb-6">
         <ChevronLeft size={16} /> Back to account
       </Link>
-      <h1 className="text-3xl font-bold text-[#623903] mb-2">My Addresses</h1>
+      <h1 className="text-3xl font-bold text-[#1f2937] mb-2">My Addresses</h1>
       <p className="text-neutral-500 mb-8">Your saved delivery addresses.</p>
 
       {list.length === 0 && editing !== "new" ? (
         <div className="flex flex-col items-center justify-center text-center py-16 bg-white rounded-3xl border border-neutral-200/70 shadow-sm">
-          <div className="p-5 rounded-full bg-neutral-100 text-[#7a4a05] mb-5">
+          <div className="p-5 rounded-full bg-neutral-100 text-[#374151] mb-5">
             <MapPin size={28} />
           </div>
-          <p className="text-lg font-bold text-[#623903]">No saved addresses</p>
+          <p className="text-lg font-bold text-[#1f2937]">No saved addresses</p>
           <p className="text-neutral-500 text-sm mt-1 mb-6">
             Add an address or save one at checkout.
           </p>
-          <button onClick={startAdd} className="inline-flex items-center gap-2 px-6 py-3 bg-[#623903] text-white font-bold rounded-xl hover:bg-[#7a4a05] transition">
+          <button onClick={startAdd} className="inline-flex items-center gap-2 px-6 py-3 bg-[#1f2937] text-white font-bold rounded-xl hover:bg-[#374151] transition">
             <Plus size={16} /> Add Address
           </button>
         </div>
@@ -133,9 +133,9 @@ export default function AddressesPage() {
                 key={i}
                 className="flex items-start gap-3 bg-white rounded-2xl border border-neutral-200/70 shadow-sm p-5"
               >
-                <MapPin size={18} className="text-[#7a4a05] mt-0.5 shrink-0" />
+                <MapPin size={18} className="text-[#374151] mt-0.5 shrink-0" />
                 <div className="text-sm flex-1 min-w-0">
-                  <p className="font-bold text-[#623903]">
+                  <p className="font-bold text-[#1f2937]">
                     {a.name} · {a.phone}
                   </p>
                   <p className="text-neutral-600 mt-0.5">
@@ -149,7 +149,7 @@ export default function AddressesPage() {
                 <div className="flex items-center gap-1 shrink-0">
                   <button
                     onClick={() => startEdit(i)}
-                    className="text-neutral-400 hover:text-[#623903] transition p-1.5 rounded hover:bg-neutral-100"
+                    className="text-neutral-400 hover:text-[#1f2937] transition p-1.5 rounded hover:bg-neutral-100"
                     aria-label="Edit address"
                   >
                     <Pencil size={16} />
@@ -171,7 +171,7 @@ export default function AddressesPage() {
           {editing === null && (
             <button
               onClick={startAdd}
-              className="w-full flex items-center justify-center gap-2 border border-dashed border-neutral-300 text-[#623903] py-3 rounded-xl font-bold hover:bg-neutral-50 transition"
+              className="w-full flex items-center justify-center gap-2 border border-dashed border-neutral-300 text-[#1f2937] py-3 rounded-xl font-bold hover:bg-neutral-50 transition"
             >
               <Plus size={16} /> Add New Address
             </button>

@@ -15,7 +15,7 @@ export type ViewedItem = {
   category?: string;
 };
 
-export const RECENT_KEY = "mello:recentlyViewed";
+export const RECENT_KEY = "keycartx:recentlyViewed";
 const MAX = 12;
 
 // Records the current product into localStorage (most-recent first, de-duped).
