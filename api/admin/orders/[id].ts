@@ -2,6 +2,7 @@ import type { VercelRequest, VercelResponse } from "@vercel/node";
 import { requireAdmin } from "../../_lib/admin-utils.js";
 import { createAdminClient } from "../../_lib/supabase-admin.js";
 import { listUserEmails } from "../../_lib/admin-data.js";
+import { sendEmail, orderStatusEmail } from "../../_lib/email.js";
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   const auth = await requireAdmin(req, res);
@@ -32,7 +33,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     // Merge tracking into the shipping jsonb (preserve any existing fields).
     const { data: existing } = await admin
       .from("orders")
-      .select("shipping")
+      .select("user_id, total, status, shipping")
       .eq("id", id)
       .single();
 
@@ -46,6 +47,16 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     const { error } = await admin.from("orders").update(update).eq("id", id);
     if (error) return res.status(500).json({ error: error.message });
+
+    // Only on an actual change of status - re-saving an order to add a
+    // tracking number should not mail the customer "shipped" a second time.
+    if (status && existing && status !== existing.status) {
+      const mail = orderStatusEmail({ id, total: existing.total, shipping }, status);
+      if (mail && existing.user_id) {
+        const emails = await listUserEmails();
+        await sendEmail({ to: emails.get(existing.user_id) ?? "", ...mail });
+      }
+    }
 
     return res.status(200).json({ success: true });
   }

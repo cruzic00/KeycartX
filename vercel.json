@@ -3,6 +3,9 @@
   "framework": "vite",
   "buildCommand": "vite build",
   "outputDirectory": "dist",
+  "crons": [
+    { "path": "/api/cron/abandoned-cart", "schedule": "0 12 * * *" }
+  ],
   "rewrites": [
     {
       "source": "/products/:slug",

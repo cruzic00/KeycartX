@@ -2,6 +2,7 @@ import type { VercelRequest, VercelResponse } from "@vercel/node";
 import { createClient } from "./_lib/supabase-server.js";
 import { getCurrentUser } from "./_lib/auth.js";
 import { createAdminClient } from "./_lib/supabase-admin.js";
+import { sendEmail, orderPlacedEmail } from "./_lib/email.js";
 
 // Place an order directly (payment temporarily disabled — Cash on Delivery).
 async function placeOrder(req: VercelRequest, res: VercelResponse) {
@@ -35,6 +36,14 @@ async function placeOrder(req: VercelRequest, res: VercelResponse) {
   }
 
   await admin.from("carts").delete().eq("user_id", user.id);
+
+  // Awaited, not fire-and-forget: a serverless function can be frozen the
+  // moment the response is sent, which would cut the request off mid-flight.
+  // sendEmail never throws, so a mail failure cannot cost the customer an
+  // order that was already written.
+  const mail = orderPlacedEmail({ id: data.id, items, total: total ?? 0, shipping });
+  await sendEmail({ to: user.email, toName: user.name, ...mail });
+
   return res.status(200).json({ success: true, orderId: data.id });
 }
 
