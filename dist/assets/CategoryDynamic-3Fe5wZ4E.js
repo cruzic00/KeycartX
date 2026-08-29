@@ -1,0 +1,1 @@
+import{e as r,j as a}from"./index-B3PZiG6h.js";import{P as s}from"./ProductGrid-BTcvI87b.js";function i(){const{category:e=""}=r(),t=decodeURIComponent(e),o=t.charAt(0).toUpperCase()+t.slice(1);return a.jsx(s,{category:t,title:`${o} Collection`})}export{i as default};

@@ -1,0 +1,21 @@
+import{c as l,r as o,j as e}from"./index-B3PZiG6h.js";import{P as y,C as g,E as j,T as n,B as b}from"./AdminUI-Bo7STGj3.js";/**
+ * @license lucide-react v0.561.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const k=[["circle",{cx:"12",cy:"12",r:"10",key:"1mglay"}],["path",{d:"m9 12 2 2 4-4",key:"dzmm74"}]],N=l("circle-check",k);/**
+ * @license lucide-react v0.561.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const f=[["path",{d:"M12 6v6l4 2",key:"mmk7yg"}],["circle",{cx:"12",cy:"12",r:"10",key:"1mglay"}]],v=l("clock",f);/**
+ * @license lucide-react v0.561.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const _=[["path",{d:"M6 3h12",key:"ggurg9"}],["path",{d:"M6 8h12",key:"6g4wlu"}],["path",{d:"m6 13 8.5 8",key:"u1kupk"}],["path",{d:"M6 13h3",key:"wdp6ag"}],["path",{d:"M9 13c6.667 0 6.667-10 0-10",key:"1nkvk2"}]],w=l("indian-rupee",_);/**
+ * @license lucide-react v0.561.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const M=[["path",{d:"M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z",key:"q3az6g"}],["path",{d:"M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8",key:"1h4pet"}],["path",{d:"M12 17.5v-11",key:"1jc1ny"}]],$=l("receipt",M);function P(){const[r,x]=o.useState(null);if(o.useEffect(()=>{fetch("/api/admin/orders").then(t=>t.json()).then(t=>x(t.orders||[]))},[]),!r)return e.jsx("div",{className:"p-10 text-neutral-500",children:"Loading…"});const s=r.filter(t=>{var a;return(a=t.payment)==null?void 0:a.provider}),m=s.reduce((t,a)=>t+(a.total||0),0),c=s.filter(t=>{var a;return(((a=t.payment)==null?void 0:a.status)||t.status)==="paid"}),h=c.reduce((t,a)=>t+(a.total||0),0),p=s.length-c.length,u=[{label:"Total Value",value:`₹${(m/100).toLocaleString()}`,icon:w,tint:"bg-[#623903] text-white"},{label:"Collected",value:`₹${(h/100).toLocaleString()}`,icon:N,tint:"bg-emerald-50 text-emerald-700"},{label:"Transactions",value:s.length,icon:$,tint:"bg-blue-50 text-blue-700"},{label:"Pending",value:p,icon:v,tint:"bg-amber-50 text-amber-700"}];return e.jsxs("div",{className:"p-8 md:p-10",children:[e.jsx(y,{title:"Payments",subtitle:`${s.length} transaction${s.length===1?"":"s"}`}),e.jsx("div",{className:"grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8",children:u.map(t=>e.jsxs("div",{className:"bg-white rounded-2xl border border-neutral-200/70 shadow-sm p-5",children:[e.jsx("div",{className:`w-10 h-10 rounded-xl flex items-center justify-center mb-3 ${t.tint}`,children:e.jsx(t.icon,{size:20})}),e.jsx("p",{className:"text-2xl font-extrabold text-[#623903]",children:t.value}),e.jsx("p",{className:"text-xs text-neutral-500 uppercase tracking-wider font-semibold mt-0.5",children:t.label})]},t.label))}),e.jsx(g,{children:s.length===0?e.jsx(j,{text:"No payments found."}):e.jsxs("table",{className:"w-full text-sm",children:[e.jsx("thead",{className:"bg-neutral-50/80 text-xs uppercase tracking-wider text-neutral-500 border-b border-neutral-100",children:e.jsxs("tr",{children:[e.jsx(n,{children:"Customer"}),e.jsx(n,{children:"Amount"}),e.jsx(n,{children:"Method"}),e.jsx(n,{children:"Status"}),e.jsx(n,{children:"Transaction"}),e.jsx(n,{children:"Date"})]})}),e.jsx("tbody",{className:"divide-y divide-neutral-100",children:s.map(t=>{var a,d,i;return e.jsxs("tr",{className:"hover:bg-neutral-50/60 transition-colors",children:[e.jsx("td",{className:"px-6 py-4 font-medium text-[#623903]",children:t.userEmail}),e.jsxs("td",{className:"px-6 py-4 font-bold text-[#623903]",children:["₹",(t.total/100).toFixed(2)]}),e.jsx("td",{className:"px-6 py-4 uppercase text-xs font-semibold text-neutral-600",children:(a=t.payment)==null?void 0:a.provider}),e.jsx("td",{className:"px-6 py-4",children:e.jsx(b,{value:((d=t.payment)==null?void 0:d.status)??t.status})}),e.jsx("td",{className:"px-6 py-4 font-mono text-xs text-neutral-500",children:((i=t.payment)==null?void 0:i.razorpay_payment_id)??"—"}),e.jsx("td",{className:"px-6 py-4 text-neutral-500",children:new Date(t.created_at).toLocaleDateString()})]},t.id)})})]})})]})}export{P as default};

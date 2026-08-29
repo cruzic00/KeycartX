@@ -1,0 +1,1 @@
+import{j as t}from"./index-B3PZiG6h.js";import{P as r}from"./ProductGrid-BTcvI87b.js";function a(){return t.jsx(r,{category:"gym",title:"Gym Essentials",subtitle:"Train hard, look sharp."})}export{a as default};

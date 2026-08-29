@@ -1,6 +1,7 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import { requireAdmin } from "../../_lib/admin-utils";
 import { createAdminClient } from "../../_lib/supabase-admin";
+import { listUserEmails } from "../../_lib/admin-data";
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   const auth = await requireAdmin(req, res);
@@ -19,7 +20,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       .single();
 
     if (error || !data) return res.status(404).json({ error: "Order not found" });
-    return res.status(200).json({ order: data });
+
+    const emails = await listUserEmails();
+    const userEmail = data.user_id ? emails.get(data.user_id) ?? "—" : "Guest";
+    return res.status(200).json({ order: { ...data, userEmail } });
   }
 
   if (req.method === "PATCH") {

@@ -1,0 +1,6 @@
+import{c as a,j as e,L as t}from"./index-B3PZiG6h.js";/**
+ * @license lucide-react v0.561.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const l=[["circle",{cx:"12",cy:"12",r:"10",key:"1mglay"}],["path",{d:"m15 9-6 6",key:"1uzhvr"}],["path",{d:"m9 9 6 6",key:"z0biqf"}]],c=a("circle-x",l);function n(){return e.jsx("div",{className:"min-h-[80vh] flex flex-col items-center justify-center p-4 text-center",children:e.jsxs("div",{className:"max-w-md bg-white p-8 rounded-2xl shadow-xl flex flex-col items-center",children:[e.jsx(c,{className:"text-red-500 w-20 h-20 mb-6"}),e.jsx("h1",{className:"text-3xl font-black mb-2",children:"Payment Cancelled"}),e.jsx("p",{className:"text-gray-500 mb-8",children:"Your payment didn't go through. Your cart is still saved — you can try again."}),e.jsxs("div",{className:"flex flex-col gap-3 w-full",children:[e.jsx(t,{to:"/cart",className:"w-full py-3 bg-[#623903] text-white font-bold rounded-lg hover:bg-[#7a4a05] transition shadow-lg",children:"Back to Cart"}),e.jsx(t,{to:"/",className:"w-full py-3 bg-gray-100 text-[#623903] font-bold rounded-lg hover:bg-gray-200 transition",children:"Continue Shopping"})]})]})})}export{n as default};

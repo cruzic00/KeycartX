@@ -1,0 +1,6 @@
+import{c as l,j as e,L as s}from"./index-B3PZiG6h.js";/**
+ * @license lucide-react v0.561.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const r=[["path",{d:"M21.801 10A10 10 0 1 1 17 3.335",key:"yps3ct"}],["path",{d:"m9 11 3 3L22 4",key:"1pflzl"}]],t=l("circle-check-big",r);function o(){return e.jsx("div",{className:"min-h-[80vh] flex flex-col items-center justify-center p-4 text-center",children:e.jsxs("div",{className:"max-w-md bg-white p-8 rounded-2xl shadow-xl flex flex-col items-center",children:[e.jsx(t,{className:"text-green-500 w-20 h-20 mb-6"}),e.jsx("h1",{className:"text-3xl font-black mb-2",children:"Order Confirmed!"}),e.jsx("p",{className:"text-gray-500 mb-8",children:"Thank you for your purchase. We've received your order and it will be processed shortly."}),e.jsxs("div",{className:"flex flex-col gap-3 w-full",children:[e.jsx(s,{to:"/orders",className:"w-full py-3 bg-[#623903] text-white font-bold rounded-lg hover:bg-[#7a4a05] transition shadow-lg",children:"View My Orders"}),e.jsx(s,{to:"/",className:"w-full py-3 bg-gray-100 text-[#623903] font-bold rounded-lg hover:bg-gray-200 transition",children:"Continue Shopping"})]})]})})}export{o as default};

@@ -7,7 +7,7 @@ import http from "http";
 import { readFileSync, readdirSync, statSync, existsSync } from "fs";
 import path from "path";
 import { fileURLToPath, pathToFileURL } from "url";
-import { parse as parseCookieHeader } from "cookie";
+import { parseCookie as parseCookieHeader } from "cookie";
 import dotenv from "dotenv";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));

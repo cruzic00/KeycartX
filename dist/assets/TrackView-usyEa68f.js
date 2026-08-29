@@ -1,0 +1,1 @@
+import{r as o}from"./index-B3PZiG6h.js";const s="mello:recentlyViewed",n=12;function u({item:r}){return o.useEffect(()=>{if(r!=null&&r.slug)try{const t=localStorage.getItem(s),c=t?JSON.parse(t):[],e=[r,...c.filter(l=>l.slug!==r.slug)].slice(0,n);localStorage.setItem(s,JSON.stringify(e))}catch{}},[r]),null}export{s as R,u as T};

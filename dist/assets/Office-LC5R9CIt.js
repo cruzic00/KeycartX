@@ -1,0 +1,1 @@
+import{j as t}from"./index-B3PZiG6h.js";import{P as o}from"./ProductGrid-BTcvI87b.js";function f(){return t.jsx(o,{category:"office",title:"Office Collection",subtitle:"Dress for the job you want."})}export{f as default};

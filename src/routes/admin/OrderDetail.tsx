@@ -1,9 +1,4 @@
-// Port of app/admin/orders/[id]/page.tsx + OrderManager.tsx. The original
-// read the order directly via the Supabase admin client and resolved the
-// buyer's email server-side via listUserEmails(); GET /api/admin/orders/:id
-// doesn't expose a userEmail field (only user_id), so the customer line
-// falls back to showing the user id (or "Guest" for a guest checkout)
-// instead of an email address.
+// Port of app/admin/orders/[id]/page.tsx + OrderManager.tsx.
 //
 // PrintButton.tsx was a 15-line component; folded in here as a local
 // function rather than a separate file since it has no reuse elsewhere.
@@ -55,7 +50,7 @@ export default function AdminOrderDetail() {
 
   if (!order) return <div className="p-10 text-neutral-500">Loading…</div>;
 
-  const customer = order.user_id ? order.user_id : "Guest";
+  const customer = order.userEmail ?? (order.user_id ? order.user_id : "Guest");
 
   return (
     <div className="p-8 md:p-10 max-w-4xl">
