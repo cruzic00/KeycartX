@@ -12,7 +12,7 @@ function PrintButton() {
   return (
     <button
       onClick={() => window.print()}
-      className="no-print inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-neutral-200 text-sm font-bold text-[#1f2937] hover:bg-neutral-50 transition"
+      className="no-print inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-neutral-200 text-sm font-bold text-[#111827] hover:bg-neutral-50 transition"
     >
       <Printer size={16} /> Print
     </button>
@@ -40,7 +40,7 @@ export default function AdminOrderDetail() {
   if (notFound) {
     return (
       <div className="p-8 md:p-10 max-w-4xl">
-        <Link to="/admin/orders" className="inline-flex items-center gap-1 text-sm font-medium text-neutral-500 hover:text-[#1f2937] mb-6">
+        <Link to="/admin/orders" className="inline-flex items-center gap-1 text-sm font-medium text-neutral-500 hover:text-[#111827] mb-6">
           <ChevronLeft size={16} /> Back to orders
         </Link>
         <p className="text-neutral-400">Order not found.</p>
@@ -55,7 +55,7 @@ export default function AdminOrderDetail() {
   return (
     <div className="p-8 md:p-10 max-w-4xl">
       <div className="flex items-center justify-between mb-6 no-print">
-        <Link to="/admin/orders" className="inline-flex items-center gap-1 text-sm font-medium text-neutral-500 hover:text-[#1f2937]">
+        <Link to="/admin/orders" className="inline-flex items-center gap-1 text-sm font-medium text-neutral-500 hover:text-[#111827]">
           <ChevronLeft size={16} /> Back to orders
         </Link>
         <PrintButton />
@@ -64,19 +64,19 @@ export default function AdminOrderDetail() {
       <div id="print-area">
       <div className="flex flex-wrap items-end justify-between gap-3 mb-6">
         <div>
-          <h1 className="text-2xl font-bold text-[#1f2937]">Order #{String(order.id).slice(0, 8)}</h1>
+          <h1 className="text-2xl font-bold text-[#111827]">Order #{String(order.id).slice(0, 8)}</h1>
           <p className="text-neutral-500 text-sm mt-1">
             {customer} · {new Date(order.created_at).toLocaleString()}
           </p>
         </div>
-        <p className="text-2xl font-black text-[#1f2937]">₹{(order.total / 100).toFixed(2)}</p>
+        <p className="text-2xl font-black text-[#111827]">₹{(order.total / 100).toFixed(2)}</p>
       </div>
 
       <div className="grid md:grid-cols-3 gap-6">
         {/* Items */}
         <Card className="md:col-span-2">
           <div className="p-6 space-y-4">
-            <h2 className="font-bold text-[#1f2937]">Items</h2>
+            <h2 className="font-bold text-[#111827]">Items</h2>
             {(order.items ?? []).map((it: any, i: number) => (
               <div key={i} className="flex items-center gap-4 border-b border-neutral-100 pb-4 last:border-0 last:pb-0">
                 <img
@@ -86,12 +86,12 @@ export default function AdminOrderDetail() {
                   className="w-16 h-16 rounded-lg object-cover border border-neutral-200 shrink-0"
                 />
                 <div className="flex-1 min-w-0">
-                  <p className="font-semibold text-[#1f2937] truncate">{it.name}</p>
+                  <p className="font-semibold text-[#111827] truncate">{it.name}</p>
                   <p className="text-sm text-neutral-500">
                     {it.size ? `Size ${it.size} · ` : ""}Qty {it.qty}
                   </p>
                 </div>
-                <p className="font-bold text-[#1f2937]">₹{((it.price * it.qty) / 100).toFixed(2)}</p>
+                <p className="font-bold text-[#111827]">₹{((it.price * it.qty) / 100).toFixed(2)}</p>
               </div>
             ))}
           </div>
@@ -114,7 +114,7 @@ export default function AdminOrderDetail() {
       {/* Delivery details */}
       <Card className="mt-6">
         <div className="p-6">
-          <h2 className="font-bold text-[#1f2937] mb-4">Delivery Details</h2>
+          <h2 className="font-bold text-[#111827] mb-4">Delivery Details</h2>
           {order.shipping && (order.shipping.name || order.shipping.address) ? (
             <div className="grid sm:grid-cols-3 gap-x-8 gap-y-3 text-sm">
               {[

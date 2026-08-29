@@ -29,7 +29,7 @@ const EMPTY: Address = {
 
 // Online payment (Razorpay) is temporarily disabled — Cash on Delivery.
 export default function CheckoutButton({
-  className = "px-6 py-3 bg-[#1f2937] text-white rounded",
+  className = "px-6 py-3 bg-[#111827] text-white rounded",
   label = "PROCEED TO BUY",
 }: {
   className?: string;
@@ -117,7 +117,7 @@ export default function CheckoutButton({
         <div className="fixed inset-0 z-[100] bg-black/60 grid place-items-center p-4">
           <div className="bg-white rounded-2xl w-full max-w-lg p-6 space-y-4 max-h-[92vh] overflow-y-auto">
             <div className="flex items-center justify-between">
-              <h3 className="text-xl font-bold text-[#1f2937]">
+              <h3 className="text-xl font-bold text-[#111827]">
                 {view === "select" ? "Choose Delivery Address" : "Delivery Details"}
               </h3>
               <button
@@ -139,19 +139,19 @@ export default function CheckoutButton({
                       type="button"
                       onClick={() => setSelected(i)}
                       className={`w-full text-left border rounded-xl p-4 transition ${
-                        active ? "border-[#1f2937] ring-1 ring-[#1f2937] bg-[#1f2937]/[0.03]" : "border-neutral-200 hover:border-neutral-300"
+                        active ? "border-[#111827] ring-1 ring-[#111827] bg-[#111827]/[0.03]" : "border-neutral-200 hover:border-neutral-300"
                       }`}
                     >
                       <div className="flex items-start gap-3">
                         <span
                           className={`mt-0.5 w-5 h-5 rounded-full border-2 grid place-items-center shrink-0 ${
-                            active ? "border-[#1f2937]" : "border-neutral-300"
+                            active ? "border-[#111827]" : "border-neutral-300"
                           }`}
                         >
-                          {active && <span className="w-2.5 h-2.5 rounded-full bg-[#1f2937]" />}
+                          {active && <span className="w-2.5 h-2.5 rounded-full bg-[#111827]" />}
                         </span>
                         <div className="text-sm flex-1 min-w-0">
-                          <p className="font-bold text-[#1f2937]">
+                          <p className="font-bold text-[#111827]">
                             {a.name} · {a.phone}
                           </p>
                           <p className="text-neutral-600 mt-0.5">
@@ -172,7 +172,7 @@ export default function CheckoutButton({
                     setForm({ ...EMPTY, name: user?.name || "" });
                     setView("form");
                   }}
-                  className="w-full flex items-center justify-center gap-2 border border-dashed border-neutral-300 text-[#1f2937] py-3 rounded-xl font-bold hover:bg-neutral-50 transition"
+                  className="w-full flex items-center justify-center gap-2 border border-dashed border-neutral-300 text-[#111827] py-3 rounded-xl font-bold hover:bg-neutral-50 transition"
                 >
                   <Plus size={16} /> Add New Address
                 </button>
@@ -180,7 +180,7 @@ export default function CheckoutButton({
                 <button
                   onClick={() => saved[selected] && submitOrder(saved[selected])}
                   disabled={loading || !saved[selected]}
-                  className="w-full flex items-center justify-center gap-2 bg-[#1f2937] text-white py-3 rounded-xl font-bold hover:bg-[#374151] transition disabled:opacity-50"
+                  className="w-full flex items-center justify-center gap-2 bg-[#111827] text-white py-3 rounded-xl font-bold hover:bg-[#1f2937] transition disabled:opacity-50"
                 >
                   <Check size={16} />
                   {loading ? "Placing order…" : `Deliver here · ₹${(total / 100).toFixed(0)}`}
@@ -211,7 +211,7 @@ export default function CheckoutButton({
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full bg-[#1f2937] text-white py-3 rounded-lg font-bold hover:bg-[#374151] transition disabled:opacity-50"
+                  className="w-full bg-[#111827] text-white py-3 rounded-lg font-bold hover:bg-[#1f2937] transition disabled:opacity-50"
                 >
                   {loading ? "Placing order…" : `Place Order · ₹${(total / 100).toFixed(0)}`}
                 </button>
@@ -220,7 +220,7 @@ export default function CheckoutButton({
                   <button
                     type="button"
                     onClick={() => setView("select")}
-                    className="w-full text-sm text-neutral-500 hover:text-[#1f2937] transition"
+                    className="w-full text-sm text-neutral-500 hover:text-[#111827] transition"
                   >
                     ← Back to saved addresses
                   </button>

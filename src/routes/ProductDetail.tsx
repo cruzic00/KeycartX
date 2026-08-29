@@ -48,7 +48,7 @@ export default function ProductDetail() {
   if (notFound || !product) {
     return (
       <div className="max-w-3xl mx-auto py-24 text-center">
-        <h1 className="text-2xl font-bold text-[#1f2937] mb-2">Product not found</h1>
+        <h1 className="text-2xl font-bold text-[#111827] mb-2">Product not found</h1>
         <p className="text-neutral-500">The product you&apos;re looking for doesn&apos;t exist or was removed.</p>
       </div>
     );
@@ -84,7 +84,7 @@ export default function ProductDetail() {
           <div className="space-y-6">
             <div>
               <div className="flex items-start justify-between gap-4 mb-2">
-                <h1 className="text-3xl font-extrabold text-[#1f2937]">{product.name}</h1>
+                <h1 className="text-3xl font-extrabold text-[#111827]">{product.name}</h1>
                 <ShareButton title={product.name} />
               </div>
               <div className="flex items-center gap-2 mb-4">
@@ -95,7 +95,7 @@ export default function ProductDetail() {
               </div>
 
               <div className="flex items-baseline flex-wrap gap-3 mb-4">
-                <span className="text-3xl font-bold text-[#1f2937]">
+                <span className="text-3xl font-bold text-[#111827]">
                   ₹{(product.price / 100).toFixed(0)}
                 </span>
                 {product.mrp && product.mrp > product.price && (
@@ -139,12 +139,12 @@ export default function ProductDetail() {
               ].filter(([, v]) => v);
               return rows.length > 0 ? (
                 <div>
-                  <h3 className="font-bold text-[#1f2937] mb-2">Product Details</h3>
+                  <h3 className="font-bold text-[#111827] mb-2">Product Details</h3>
                   <div className="bg-neutral-50 rounded-lg p-4 text-sm">
                     {rows.map(([label, value]) => (
                       <div key={label as string} className="flex justify-between py-1.5 border-b border-neutral-200 last:border-0">
                         <span className="text-neutral-500">{label}</span>
-                        <span className="font-medium text-[#1f2937] capitalize">{value}</span>
+                        <span className="font-medium text-[#111827] capitalize">{value}</span>
                       </div>
                     ))}
                   </div>
@@ -160,9 +160,9 @@ export default function ProductDetail() {
             {/* Header */}
             <div className="flex flex-col md:flex-row items-end justify-between gap-8 mb-12">
               <div>
-                <h2 className="text-4xl font-black text-[#1f2937] mb-4 tracking-tight">Customer Reviews</h2>
+                <h2 className="text-4xl font-black text-[#111827] mb-4 tracking-tight">Customer Reviews</h2>
                 <div className="flex items-center gap-4">
-                  <span className="text-6xl font-black text-[#1f2937] tracking-tighter">{(product.rating || 4.5).toFixed(1)}</span>
+                  <span className="text-6xl font-black text-[#111827] tracking-tighter">{(product.rating || 4.5).toFixed(1)}</span>
                   <div className="flex flex-col gap-1">
                     <div className="flex text-yellow-400 text-xl tracking-wide">
                       {"★".repeat(Math.round(product.rating || 4.5))}{"☆".repeat(5 - Math.round(product.rating || 4.5))}
@@ -185,12 +185,12 @@ export default function ProductDetail() {
                         {review.image ? (
                           <img src={review.image} alt="User" className="w-10 h-10 rounded-full object-cover ring-2 ring-white shadow-sm" />
                         ) : (
-                          <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-sm font-bold text-[#1f2937] shadow-sm border border-neutral-100">
+                          <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-sm font-bold text-[#111827] shadow-sm border border-neutral-100">
                             {review.reviewer?.[0] || 'A'}
                           </div>
                         )}
                         <div>
-                          <p className="text-sm font-bold text-[#1f2937]">{review.reviewer || "Anonymous"}</p>
+                          <p className="text-sm font-bold text-[#111827]">{review.reviewer || "Anonymous"}</p>
                           <div className="text-xs text-neutral-400">Verified Buyer</div>
                         </div>
                       </div>
@@ -205,14 +205,14 @@ export default function ProductDetail() {
 
                     <div className="flex items-center justify-between text-xs text-neutral-400 border-t border-neutral-200/50 pt-4">
                       <span>{new Date(review.createdAt || Date.now()).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })}</span>
-                      <button className="hover:text-[#1f2937] transition-colors opacity-0 group-hover:opacity-100">Helpful?</button>
+                      <button className="hover:text-[#111827] transition-colors opacity-0 group-hover:opacity-100">Helpful?</button>
                     </div>
                   </div>
                 ))
               ) : (
                 <div className="col-span-full py-20 text-center bg-neutral-50 rounded-3xl border border-dashed border-neutral-200">
                   <div className="text-4xl mb-4 opacity-20">💬</div>
-                  <h3 className="text-lg font-bold text-[#1f2937] mb-2">No reviews yet</h3>
+                  <h3 className="text-lg font-bold text-[#111827] mb-2">No reviews yet</h3>
                   <p className="text-neutral-500 max-w-md mx-auto">Be the first to share your thoughts on this product. Your feedback helps others make better choices.</p>
                 </div>
               )}
@@ -224,7 +224,7 @@ export default function ProductDetail() {
         {product.relatedProducts && product.relatedProducts.length > 0 && (
           <section className="py-12 border-t border-neutral-100">
             <div className="mb-10">
-              <h3 className="text-2xl md:text-3xl font-black text-[#1f2937] uppercase tracking-tight">You Might Also Like</h3>
+              <h3 className="text-2xl md:text-3xl font-black text-[#111827] uppercase tracking-tight">You Might Also Like</h3>
             </div>
 
             <ProductSlider products={product.relatedProducts} />

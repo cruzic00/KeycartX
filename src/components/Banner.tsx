@@ -54,7 +54,7 @@ export default function Banner({ slides }: { slides: Slide[] }) {
   if (!s) return null;
 
   return (
-    <div className="relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] -mt-8 w-screen h-[80vh] bg-[#1f2937] group overflow-hidden">
+    <div className="relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] -mt-8 w-screen h-[80vh] bg-[#111827] group overflow-hidden">
       {slides.map((slide, i) => (
         <div
           key={i}
@@ -112,7 +112,7 @@ export default function Banner({ slides }: { slides: Slide[] }) {
 
           <Link
             to="/products"
-            className="mt-10 inline-block px-12 py-4 bg-white text-[#1f2937] text-sm font-black uppercase tracking-widest hover:bg-neutral-200 hover:scale-105 transition-all duration-300 animate-in zoom-in fade-in duration-1000 delay-500"
+            className="mt-10 inline-block px-12 py-4 bg-white text-[#111827] text-sm font-black uppercase tracking-widest hover:bg-neutral-200 hover:scale-105 transition-all duration-300 animate-in zoom-in fade-in duration-1000 delay-500"
           >
             Shop The Collection
           </Link>

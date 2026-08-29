@@ -33,7 +33,7 @@ function ProductSection({ block, products }: { block: SectionBlock; products: an
 
 function BannerBlockView({ block }: { block: BannerBlock }) {
   return (
-    <section className="relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen h-[30vh] min-h-[220px] overflow-hidden bg-[#1f2937]">
+    <section className="relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen h-[30vh] min-h-[220px] overflow-hidden bg-[#111827]">
       {block.mediaType === "video" ? (
         <video src={block.mediaUrl} autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover" />
       ) : (
@@ -47,7 +47,7 @@ function BannerBlockView({ block }: { block: BannerBlock }) {
         )}
         <Link
           to="/products"
-          className="mt-6 px-8 py-3 bg-white text-[#1f2937] text-sm font-black uppercase tracking-widest hover:bg-neutral-200 transition-colors"
+          className="mt-6 px-8 py-3 bg-white text-[#111827] text-sm font-black uppercase tracking-widest hover:bg-neutral-200 transition-colors"
         >
           Shop Now
         </Link>

@@ -21,7 +21,7 @@ export default function ProfileEditPage() {
 
   return (
     <div className="py-8">
-      <Link to="/profile" className="inline-flex items-center gap-1 text-sm font-medium text-neutral-500 hover:text-[#1f2937] mb-6">
+      <Link to="/profile" className="inline-flex items-center gap-1 text-sm font-medium text-neutral-500 hover:text-[#111827] mb-6">
         <ChevronLeft size={16} /> Back to account
       </Link>
       <ProfileForm initialUser={initialUser} />

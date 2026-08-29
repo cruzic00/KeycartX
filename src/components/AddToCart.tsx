@@ -59,8 +59,8 @@ export default function AddToCart({ product }: { product: Product }) {
             onClick={() => setSize(s)}
             className={`px-4 py-2 rounded-lg border font-bold transition
               ${s === size
-                ? "bg-[#1f2937] text-white"
-                : "bg-white text-[#1f2937] hover:bg-neutral-100"
+                ? "bg-[#111827] text-white"
+                : "bg-white text-[#111827] hover:bg-neutral-100"
               }`}
           >
             {s}
@@ -70,7 +70,7 @@ export default function AddToCart({ product }: { product: Product }) {
 
       <button
         onClick={handleAddToCart}
-        className="bg-[#1f2937] hover:bg-[#374151] text-white px-6 py-3 rounded-md font-bold transition"
+        className="bg-[#111827] hover:bg-[#1f2937] text-white px-6 py-3 rounded-md font-bold transition"
       >
         Add to cart
       </button>

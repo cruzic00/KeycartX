@@ -27,7 +27,7 @@ export default function ProductCard({ product }: { product: CardProduct }) {
   return (
     <Link
       to={href}
-      className="group flex flex-col overflow-hidden bg-white rounded-2xl border border-neutral-100 transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+      className="card-3d group flex flex-col overflow-hidden bg-white rounded-2xl border border-neutral-100 hover:-translate-y-1"
     >
       <div className="relative aspect-[4/5] overflow-hidden bg-gray-100">
         <img
@@ -44,7 +44,7 @@ export default function ProductCard({ product }: { product: CardProduct }) {
         )}
 
         {product.rating ? (
-          <span className="absolute bottom-3 left-3 flex items-center gap-1 bg-white/90 text-[#1f2937] text-xs font-bold px-2 py-1 rounded-full shadow-sm backdrop-blur-sm">
+          <span className="absolute bottom-3 left-3 flex items-center gap-1 bg-white/90 text-[#111827] text-xs font-bold px-2 py-1 rounded-full shadow-sm backdrop-blur-sm">
             <span className="text-yellow-500">★</span>
             {product.rating.toFixed(1)}
             {product.reviews ? <span className="text-neutral-400 font-medium">({product.reviews})</span> : null}
@@ -54,7 +54,7 @@ export default function ProductCard({ product }: { product: CardProduct }) {
 
       <div className="flex flex-col gap-1 p-4">
         <div className="flex items-baseline gap-2 flex-wrap">
-          <span className="text-lg font-bold text-[#1f2937]">₹{price.toFixed(0)}</span>
+          <span className="text-lg font-bold text-[#111827]">₹{price.toFixed(0)}</span>
           {off > 0 && (
             <>
               <span className="text-sm text-neutral-400 line-through">₹{mrp.toFixed(0)}</span>

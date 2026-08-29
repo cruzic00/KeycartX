@@ -27,7 +27,7 @@ export default function RegisterPage() {
   if (user) {
     return (
       <div className="min-h-[80vh] flex flex-col items-center justify-center gap-3 text-neutral-500">
-        <svg className="animate-spin h-7 w-7 text-[#1f2937]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+        <svg className="animate-spin h-7 w-7 text-[#111827]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
           <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
           <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
         </svg>
@@ -60,7 +60,7 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="min-h-[80vh] flex items-center justify-center bg-gradient-to-br from-[#1f2937] via-[#374151] to-[#1f2937] rounded-2xl">
+    <div className="min-h-[80vh] flex items-center justify-center bg-gradient-to-br from-[#111827] via-[#1f2937] to-[#111827] rounded-2xl">
       <form
         onSubmit={handleRegister}
         className="bg-white rounded-xl p-8 w-[360px] space-y-4 shadow-lg"
@@ -111,7 +111,7 @@ export default function RegisterPage() {
         <button
           type="submit"
           disabled={loading}
-          className="w-full bg-[#1f2937] text-white py-2 rounded font-semibold disabled:opacity-50"
+          className="w-full bg-[#111827] text-white py-2 rounded font-semibold disabled:opacity-50"
         >
           {loading ? "Creating..." : "Register"}
         </button>

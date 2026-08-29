@@ -38,14 +38,14 @@ export default function OrderManager({
 
   return (
     <div className="bg-white rounded-2xl border border-neutral-200/70 shadow-sm p-6 space-y-5 h-fit">
-      <h2 className="font-bold text-[#1f2937]">Manage</h2>
+      <h2 className="font-bold text-[#111827]">Manage</h2>
 
       <div>
         <label className="block text-xs font-bold uppercase tracking-wide text-neutral-500 mb-1.5">Order Status</label>
         <select
           value={status}
           onChange={(e) => setStatus(e.target.value)}
-          className="w-full px-3 py-2 border border-neutral-200 rounded-lg capitalize focus:ring-2 focus:ring-[#1f2937] outline-none"
+          className="w-full px-3 py-2 border border-neutral-200 rounded-lg capitalize focus:ring-2 focus:ring-[#111827] outline-none"
         >
           {STATUSES.map((s) => (
             <option key={s} value={s}>{s}</option>
@@ -59,7 +59,7 @@ export default function OrderManager({
           value={tracking}
           onChange={(e) => setTracking(e.target.value)}
           placeholder="e.g. EK123456789IN"
-          className="w-full px-3 py-2 border border-neutral-200 rounded-lg focus:ring-2 focus:ring-[#1f2937] outline-none"
+          className="w-full px-3 py-2 border border-neutral-200 rounded-lg focus:ring-2 focus:ring-[#111827] outline-none"
         />
         <p className="text-xs text-neutral-400 mt-1">Shown to the customer on their orders page.</p>
       </div>
@@ -73,7 +73,7 @@ export default function OrderManager({
       <button
         onClick={save}
         disabled={saving}
-        className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-[#1f2937] text-white font-bold rounded-xl hover:bg-[#374151] transition disabled:opacity-50"
+        className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-[#111827] text-white font-bold rounded-xl hover:bg-[#1f2937] transition disabled:opacity-50"
       >
         {saving ? <Loader2 size={16} className="animate-spin" /> : <Save size={16} />}
         Save changes

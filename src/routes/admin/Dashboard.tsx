@@ -65,11 +65,11 @@ export default function AdminDashboard() {
       {/* HEADER */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-[#1f2937]">Dashboard Overview</h1>
+          <h1 className="text-3xl font-bold text-[#111827]">Dashboard Overview</h1>
           <p className="text-neutral-500 mt-1">Welcome back, here's what's happening today.</p>
         </div>
         <div className="flex gap-3">
-          <Link to="/admin/stocks" className="px-4 py-2 bg-[#1f2937] text-white rounded-lg text-sm font-semibold hover:bg-[#374151] transition shadow-lg shadow-[#1f2937]/20">
+          <Link to="/admin/stocks" className="px-4 py-2 bg-[#111827] text-white rounded-lg text-sm font-semibold hover:bg-[#1f2937] transition shadow-lg shadow-[#111827]/20">
             Manage Products
           </Link>
         </div>
@@ -89,7 +89,7 @@ export default function AdminDashboard() {
             </div>
             <div>
               <p className="text-neutral-500 text-sm font-semibold uppercase tracking-wider">{stat.title}</p>
-              <h3 className="text-3xl font-extrabold text-[#1f2937] mt-1">{stat.value}</h3>
+              <h3 className="text-3xl font-extrabold text-[#111827] mt-1">{stat.value}</h3>
             </div>
           </div>
         ))}
@@ -116,12 +116,12 @@ export default function AdminDashboard() {
                     <ShoppingBag size={18} />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="font-bold text-[#1f2937] truncate">{order.userEmail}</p>
+                    <p className="font-bold text-[#111827] truncate">{order.userEmail}</p>
                     <p className="text-xs text-neutral-500">
                       {new Date(order.created_at).toLocaleDateString()} · <span className="capitalize">{order.status}</span>
                     </p>
                   </div>
-                  <div className="font-bold text-[#1f2937]">₹{(order.total / 100).toFixed(2)}</div>
+                  <div className="font-bold text-[#111827]">₹{(order.total / 100).toFixed(2)}</div>
                 </div>
               ))
             )}

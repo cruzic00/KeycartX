@@ -72,7 +72,7 @@ export default function CategoryManager() {
         <button
           onClick={save}
           disabled={saving}
-          className="flex items-center gap-2 px-5 py-2.5 bg-[#1f2937] text-white font-bold rounded-xl hover:bg-[#374151] transition disabled:opacity-50"
+          className="flex items-center gap-2 px-5 py-2.5 bg-[#111827] text-white font-bold rounded-xl hover:bg-[#1f2937] transition disabled:opacity-50"
         >
           {saving ? <Loader2 size={16} className="animate-spin" /> : <Save size={16} />} Save
         </button>
@@ -87,9 +87,9 @@ export default function CategoryManager() {
           onChange={(e) => setNewCat(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && addCategory()}
           placeholder="New category name (e.g. Hoodies)"
-          className="flex-1 px-4 py-2.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#1f2937] outline-none"
+          className="flex-1 px-4 py-2.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-[#111827] outline-none"
         />
-        <button onClick={addCategory} className="flex items-center gap-1 px-4 py-2.5 bg-[#1f2937] text-white font-bold rounded-xl hover:bg-[#374151]">
+        <button onClick={addCategory} className="flex items-center gap-1 px-4 py-2.5 bg-[#111827] text-white font-bold rounded-xl hover:bg-[#1f2937]">
           <Plus size={16} /> Add
         </button>
       </div>
@@ -124,7 +124,7 @@ export default function CategoryManager() {
                 onChange={(e) => setSubInputs({ ...subInputs, [i]: e.target.value })}
                 onKeyDown={(e) => e.key === "Enter" && addSub(i)}
                 placeholder="Add sub-category"
-                className="flex-1 px-3 py-2 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-[#1f2937] outline-none"
+                className="flex-1 px-3 py-2 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-[#111827] outline-none"
               />
               <button onClick={() => addSub(i)} className="px-3 py-2 bg-gray-200 hover:bg-gray-300 rounded-lg text-sm font-medium">
                 Add

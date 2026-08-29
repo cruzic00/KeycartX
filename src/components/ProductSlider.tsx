@@ -41,7 +41,7 @@ export default function ProductSlider({ products }: { products: any[] }) {
         <button
           onClick={() => scroll(-1)}
           aria-label="Previous"
-          className="hidden md:flex absolute -left-3 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white shadow-lg border border-neutral-100 items-center justify-center text-neutral-700 hover:bg-[#1f2937] hover:text-white transition"
+          className="hidden md:flex absolute -left-3 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white shadow-lg border border-neutral-100 items-center justify-center text-neutral-700 hover:bg-[#111827] hover:text-white transition"
         >
           <ChevronLeft size={20} />
         </button>
@@ -62,7 +62,7 @@ export default function ProductSlider({ products }: { products: any[] }) {
         <button
           onClick={() => scroll(1)}
           aria-label="Next"
-          className="hidden md:flex absolute -right-3 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white shadow-lg border border-neutral-100 items-center justify-center text-neutral-700 hover:bg-[#1f2937] hover:text-white transition"
+          className="hidden md:flex absolute -right-3 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white shadow-lg border border-neutral-100 items-center justify-center text-neutral-700 hover:bg-[#111827] hover:text-white transition"
         >
           <ChevronRight size={20} />
         </button>
