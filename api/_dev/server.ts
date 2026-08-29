@@ -24,10 +24,14 @@ for (const file of [".env", ".env.local"]) {
 
 type Route = { filePath: string; segments: string[] };
 
+// Anything prefixed with _ is a plain module, not a route - the same rule
+// Vercel applies. The route handlers were renamed to _name.ts and are now
+// reached through the [resource]/[action]/[...path] dispatchers, which keeps
+// the deployment under the Hobby plan's 12-function cap.
 function walk(dir: string, base: string[] = []): Route[] {
   const routes: Route[] = [];
   for (const entry of readdirSync(dir)) {
-    if (entry === "_dev" || entry === "_lib") continue;
+    if (entry.startsWith("_")) continue;
     const full = path.join(dir, entry);
     if (statSync(full).isDirectory()) {
       routes.push(...walk(full, [...base, entry]));
@@ -41,17 +45,46 @@ function walk(dir: string, base: string[] = []): Route[] {
   return routes;
 }
 
-const routes = walk(API_ROOT);
+const isCatchAll = (seg: string) => seg.startsWith("[...") && seg.endsWith("]");
+const isDynamic = (seg: string) => seg.startsWith("[") && seg.endsWith("]");
 
-function matchRoute(pathname: string): { route: Route; params: Record<string, string> } | null {
+// Vercel resolves static segments before dynamic ones and dynamic before
+// catch-alls; without this ordering /api/admin/upload would be swallowed by
+// api/admin/[...path].ts.
+const specificity = (route: Route) =>
+  route.segments.reduce(
+    (score, seg) => score + (isCatchAll(seg) ? 0 : isDynamic(seg) ? 1 : 2),
+    route.segments.some(isCatchAll) ? 0 : 1000
+  );
+
+const routes = walk(API_ROOT).sort((a, b) => specificity(b) - specificity(a));
+
+function matchRoute(pathname: string): { route: Route; params: Record<string, string | string[]> } | null {
   const parts = pathname.replace(/^\/api\/?/, "").split("/").filter(Boolean);
   for (const route of routes) {
+    const params: Record<string, string | string[]> = {};
+    const last = route.segments[route.segments.length - 1];
+
+    if (last && isCatchAll(last)) {
+      // [...path] needs at least one segment to soak up.
+      const fixed = route.segments.length - 1;
+      if (parts.length <= fixed) continue;
+      let ok = true;
+      for (let i = 0; i < fixed; i++) {
+        const seg = route.segments[i];
+        if (isDynamic(seg)) params[seg.slice(1, -1)] = decodeURIComponent(parts[i]);
+        else if (seg !== parts[i]) { ok = false; break; }
+      }
+      if (!ok) continue;
+      params[last.slice(4, -1)] = parts.slice(fixed).map(decodeURIComponent);
+      return { route, params };
+    }
+
     if (route.segments.length !== parts.length) continue;
-    const params: Record<string, string> = {};
     let ok = true;
     for (let i = 0; i < parts.length; i++) {
       const seg = route.segments[i];
-      if (seg.startsWith("[") && seg.endsWith("]")) {
+      if (isDynamic(seg)) {
         params[seg.slice(1, -1)] = decodeURIComponent(parts[i]);
       } else if (seg !== parts[i]) {
         ok = false;
