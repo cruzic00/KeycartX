@@ -65,3 +65,4 @@ npm run start    # serve the production build
 1. Cart → `CheckoutButton` requests a Razorpay order (`/api/checkout/razorpay`).
 2. The Razorpay widget collects payment.
 3. On success the client posts to `/api/checkout/verify`, which **verifies the signature server-side**, creates the order, and clears the cart.
+# KeycartX
