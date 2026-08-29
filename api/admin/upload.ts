@@ -1,8 +1,8 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import { IncomingForm, type File as FormidableFile } from "formidable";
 import fs from "fs";
-import { requireAdmin } from "../_lib/admin-utils";
-import { createAdminClient } from "../_lib/supabase-admin";
+import { requireAdmin } from "../_lib/admin-utils.js";
+import { createAdminClient } from "../_lib/supabase-admin.js";
 
 // Vercel Node functions auto-parse JSON/urlencoded bodies; multipart uploads
 // need the raw stream instead, so parsing is turned off here and handed to

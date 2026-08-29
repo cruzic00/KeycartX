@@ -2,7 +2,7 @@
 // Returns the currently authenticated user (with profile role) or null.
 // Port of lib/auth.ts — session lives in Supabase's own cookies.
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { createClient } from "./supabase-server";
+import { createClient } from "./supabase-server.js";
 
 export type CurrentUser = {
   id: string;

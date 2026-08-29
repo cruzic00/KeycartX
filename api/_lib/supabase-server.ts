@@ -4,7 +4,7 @@
 // request/response cookie adapter in api/_lib/cookies.ts.
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import { createServerClient } from "@supabase/ssr";
-import { applySetCookies, getRequestCookies, type CookieToSet } from "./cookies";
+import { applySetCookies, getRequestCookies, type CookieToSet } from "./cookies.js";
 
 export function createClient(req: VercelRequest, res: VercelResponse) {
   return createServerClient(

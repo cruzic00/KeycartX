@@ -13,14 +13,14 @@
 // FUNCTION_INVOCATION_FAILED - and only the module actually being used gets
 // loaded, which keeps cold starts down.
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { dispatch } from "./_lib/dispatch";
+import { dispatch } from "./_lib/dispatch.js";
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   return dispatch(req, res, String(req.query.resource ?? ""), {
-    cart: () => import("./_cart"),
-    orders: () => import("./_orders"),
-    products: () => import("./_products"),
-    reviews: () => import("./_reviews"),
-    settings: () => import("./_settings"),
+    cart: () => import("./_cart.js"),
+    orders: () => import("./_orders.js"),
+    products: () => import("./_products.js"),
+    reviews: () => import("./_reviews.js"),
+    settings: () => import("./_settings.js"),
   });
 }

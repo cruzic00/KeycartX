@@ -10,14 +10,14 @@
 // every other admin route with an unparsed req.body. Vercel matches the
 // static /api/admin/upload route ahead of this catch-all, so it still works.
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { dispatch, type Routes } from "../_lib/dispatch";
+import { dispatch, type Routes } from "../_lib/dispatch.js";
 
 const routes: Routes = {
-  categories: () => import("./_categories"),
-  settings: () => import("./_settings"),
-  stats: () => import("./_stats"),
-  stocks: () => import("./_stocks"),
-  users: () => import("./_users"),
+  categories: () => import("./_categories.js"),
+  settings: () => import("./_settings.js"),
+  stats: () => import("./_stats.js"),
+  stocks: () => import("./_stocks.js"),
+  users: () => import("./_users.js"),
 };
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
@@ -26,13 +26,13 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   if (segments[0] === "orders") {
     if (segments.length === 1) {
-      return dispatch(req, res, "index", { index: () => import("./orders/_index") });
+      return dispatch(req, res, "index", { index: () => import("./orders/_index.js") });
     }
     if (segments.length === 2) {
       // orders/_id.ts reads req.query.id, which the file-based route used to
       // supply from its [id] segment.
       req.query.id = segments[1];
-      return dispatch(req, res, "id", { id: () => import("./orders/_id") });
+      return dispatch(req, res, "id", { id: () => import("./orders/_id.js") });
     }
     return res.status(404).json({ error: "Not found" });
   }

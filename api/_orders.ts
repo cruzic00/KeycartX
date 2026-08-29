@@ -1,7 +1,7 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { createClient } from "./_lib/supabase-server";
-import { getCurrentUser } from "./_lib/auth";
-import { createAdminClient } from "./_lib/supabase-admin";
+import { createClient } from "./_lib/supabase-server.js";
+import { getCurrentUser } from "./_lib/auth.js";
+import { createAdminClient } from "./_lib/supabase-admin.js";
 
 // Place an order directly (payment temporarily disabled — Cash on Delivery).
 async function placeOrder(req: VercelRequest, res: VercelResponse) {

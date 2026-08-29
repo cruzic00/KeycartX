@@ -1,7 +1,7 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import crypto from "crypto";
-import { getCurrentUser } from "../_lib/auth";
-import { createAdminClient } from "../_lib/supabase-admin";
+import { getCurrentUser } from "../_lib/auth.js";
+import { createAdminClient } from "../_lib/supabase-admin.js";
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== "POST") return res.status(405).json({ error: "Method not allowed" });

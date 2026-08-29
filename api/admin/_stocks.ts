@@ -1,6 +1,6 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { requireAdmin } from "../_lib/admin-utils";
-import { createAdminClient } from "../_lib/supabase-admin";
+import { requireAdmin } from "../_lib/admin-utils.js";
+import { createAdminClient } from "../_lib/supabase-admin.js";
 
 function slugify(text: string) {
   return text

@@ -3,7 +3,7 @@
 // endpoint for that instead. Mirrors the public-fallback pattern already
 // used by /api/admin/categories.
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { getHomeSettings } from "./_lib/settings";
+import { getHomeSettings } from "./_lib/settings.js";
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== "GET") return res.status(405).json({ error: "Method not allowed" });

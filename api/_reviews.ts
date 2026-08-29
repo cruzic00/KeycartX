@@ -1,6 +1,6 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { createAdminClient } from "./_lib/supabase-admin";
-import { getCurrentUser } from "./_lib/auth";
+import { createAdminClient } from "./_lib/supabase-admin.js";
+import { getCurrentUser } from "./_lib/auth.js";
 
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 

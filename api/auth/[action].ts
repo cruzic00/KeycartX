@@ -2,14 +2,14 @@
 // api/_lib/dispatch.ts for why these are collapsed into one Serverless
 // Function and why the handlers are imported lazily.
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { dispatch } from "../_lib/dispatch";
+import { dispatch } from "../_lib/dispatch.js";
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   return dispatch(req, res, String(req.query.action ?? ""), {
-    login: () => import("./_login"),
-    logout: () => import("./_logout"),
-    me: () => import("./_me"),
-    register: () => import("./_register"),
-    session: () => import("./_session"),
+    login: () => import("./_login.js"),
+    logout: () => import("./_logout.js"),
+    me: () => import("./_me.js"),
+    register: () => import("./_register.js"),
+    session: () => import("./_session.js"),
   });
 }

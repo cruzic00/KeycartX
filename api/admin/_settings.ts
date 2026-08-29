@@ -1,7 +1,7 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { requireAdmin } from "../_lib/admin-utils";
-import { createAdminClient } from "../_lib/supabase-admin";
-import { normalizeSettings } from "../_lib/settings";
+import { requireAdmin } from "../_lib/admin-utils.js";
+import { createAdminClient } from "../_lib/supabase-admin.js";
+import { normalizeSettings } from "../_lib/settings.js";
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   const auth = await requireAdmin(req, res);

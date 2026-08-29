@@ -1,6 +1,6 @@
 // api/_lib/settings.ts — port of lib/settings.ts (drops next/cache).
-import { createPublicClient } from "./supabase-public";
-import { withTtlCache } from "./cache";
+import { createPublicClient } from "./supabase-public.js";
+import { withTtlCache } from "./cache.js";
 
 export type Media = {
   mediaType: "image" | "video";

@@ -1,6 +1,6 @@
 // api/_lib/products-db.ts — port of lib/products-db.ts (drops next/cache).
-import { createPublicClient } from "./supabase-public";
-import { withTtlCache } from "./cache";
+import { createPublicClient } from "./supabase-public.js";
+import { withTtlCache } from "./cache.js";
 
 const PLACEHOLDER = "/placeholder.png";
 

@@ -1,6 +1,6 @@
 // api/_lib/admin-utils.ts — port of lib/admin-utils.ts
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { getCurrentUser, type CurrentUser } from "./auth";
+import { getCurrentUser, type CurrentUser } from "./auth.js";
 
 type AdminResult =
   | { ok: true; user: CurrentUser }

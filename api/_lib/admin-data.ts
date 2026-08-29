@@ -1,7 +1,7 @@
 // api/_lib/admin-data.ts — port of lib/admin-data.ts (drops next/cache).
 // Uses the service-role client; every caller must already be behind requireAdmin().
-import { createAdminClient } from "./supabase-admin";
-import { withTtlCache } from "./cache";
+import { createAdminClient } from "./supabase-admin.js";
+import { withTtlCache } from "./cache.js";
 
 const fetchUserEmailEntries = withTtlCache(async (): Promise<[string, string][]> => {
   const admin = createAdminClient();
