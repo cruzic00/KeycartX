@@ -4,6 +4,7 @@ import Providers from "./Providers";
 import RootShell from "./RootShell";
 import RequireAuth from "./RequireAuth";
 import ErrorBoundary from "./ErrorBoundary";
+import ScrollToTop from "./ScrollToTop";
 import Home from "./routes/Home";
 
 // Route-level code splitting: only Home (the landing page) loads eagerly.
@@ -41,6 +42,7 @@ const AdminUsers = lazy(() => import("./routes/admin/Users"));
 export default function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <ErrorBoundary>
         <Providers>
           <Suspense fallback={null}>
