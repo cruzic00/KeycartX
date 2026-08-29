@@ -5,6 +5,7 @@ import { createPortal } from "react-dom";
 import { useNavigate } from "react-router-dom";
 import { Plus, Check } from "lucide-react";
 import { useCart } from "../context/CartContext";
+import { useScrollLock } from "../lib/scrollLock";
 import { useAuth } from "../context/AuthContext";
 
 type Address = {
@@ -44,6 +45,8 @@ export default function CheckoutButton({
   const [saved, setSaved] = useState<Address[]>([]);
   const [selected, setSelected] = useState(0);
   const [form, setForm] = useState<Address>(EMPTY);
+
+  useScrollLock(open);
 
   const addrKey = () => `keycartx:addresses:${user?.email || "guest"}`;
 
@@ -114,8 +117,9 @@ export default function CheckoutButton({
       </button>
 
       {open && typeof document !== "undefined" && createPortal(
-        <div className="fixed inset-0 z-[100] bg-black/60 grid place-items-center p-4">
-          <div className="bg-white rounded-2xl w-full max-w-lg p-6 space-y-4 max-h-[92vh] overflow-y-auto">
+        <div data-lenis-prevent className="fixed inset-0 z-[100] bg-black/60 overflow-y-auto overscroll-contain p-4">
+          <div className="flex min-h-full items-center justify-center">
+          <div className="bg-white rounded-2xl w-full max-w-lg p-6 space-y-4">
             <div className="flex items-center justify-between">
               <h3 className="text-xl font-bold text-[#111827]">
                 {view === "select" ? "Choose Delivery Address" : "Delivery Details"}
@@ -227,6 +231,7 @@ export default function CheckoutButton({
                 )}
               </form>
             )}
+          </div>
           </div>
         </div>,
         document.body

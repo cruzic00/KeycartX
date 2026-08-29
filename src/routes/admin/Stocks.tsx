@@ -2,7 +2,8 @@
 // client-side in the original (it was a "use client" component), so the
 // only changes are dropping "use client" and importing CategoryManager
 // from its new location under src/components/admin.
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import { useScrollLock } from "../../lib/scrollLock";
 import { Plus, Search, Edit, Trash2, X, Save, RefreshCw, Loader2 } from "lucide-react";
 import CategoryManager from "../../components/admin/CategoryManager";
 
@@ -19,6 +20,7 @@ type Product = {
     fit?: string;
     closure?: string;
     unit: string;
+    sizes?: string[]; // variants; empty = product has no size/variant
     mrp: number; // Maximum Retail Price
     supplierPrice: number;
     cgst: number; // %
@@ -50,6 +52,7 @@ const EMPTY_PRODUCT: Product = {
     fit: "",
     closure: "",
     unit: "1pc",
+    sizes: [],
     mrp: 0,
     supplierPrice: 0,
     cgst: 0,
@@ -80,6 +83,12 @@ export default function StocksPage() {
     const [editingId, setEditingId] = useState<string | null>(null);
     const [formData, setFormData] = useState<Product>(EMPTY_PRODUCT);
     const [galleryUploading, setGalleryUploading] = useState(false);
+    const [selected, setSelected] = useState<Set<string>>(new Set());
+    const [bulkDeleting, setBulkDeleting] = useState(false);
+    const selectAllRef = useRef<HTMLInputElement>(null);
+
+    // Freeze the page behind the modal (and pause Lenis smooth scrolling).
+    useScrollLock(isModalOpen);
 
     async function uploadToStorage(file: File): Promise<string | null> {
         const fd = new FormData();
@@ -287,6 +296,60 @@ export default function StocksPage() {
         return matchesSearch && matchesCategory;
     });
 
+    // ---- Bulk selection -----------------------------------------------
+    // "Select all" covers the rows currently visible, not the whole catalogue.
+    const visibleIds = filteredProducts.map(p => p._id).filter(Boolean) as string[];
+    const selectedVisible = visibleIds.filter(id => selected.has(id)).length;
+    const allVisibleSelected = visibleIds.length > 0 && selectedVisible === visibleIds.length;
+
+    // Drop the selection whenever the filters change, so a bulk delete can
+    // never hit a row the user can no longer see.
+    useEffect(() => {
+        setSelected(new Set());
+    }, [searchTerm, categoryFilter]);
+
+    // `indeterminate` is a DOM property, not an attribute - it has to be set on the node.
+    useEffect(() => {
+        if (selectAllRef.current) {
+            selectAllRef.current.indeterminate = selectedVisible > 0 && !allVisibleSelected;
+        }
+    }, [selectedVisible, allVisibleSelected]);
+
+    function toggleAll() {
+        setSelected(allVisibleSelected ? new Set() : new Set(visibleIds));
+    }
+
+    function toggleOne(id: string) {
+        setSelected(prev => {
+            const next = new Set(prev);
+            if (next.has(id)) next.delete(id);
+            else next.add(id);
+            return next;
+        });
+    }
+
+    async function handleBulkDelete() {
+        const ids = [...selected];
+        if (!ids.length) return;
+        if (!confirm(`Delete ${ids.length} selected product${ids.length > 1 ? "s" : ""}? This cannot be undone.`)) return;
+
+        setBulkDeleting(true);
+        const results = await Promise.allSettled(
+            ids.map(async id => {
+                const res = await fetch(`/api/admin/stocks?id=${id}`, { method: "DELETE" });
+                if (!res.ok) {
+                    const data = await res.json().catch(() => ({}));
+                    throw new Error(data?.error || "Unknown server error");
+                }
+            })
+        );
+        const failed = results.filter(r => r.status === "rejected").length;
+        setBulkDeleting(false);
+        setSelected(new Set());
+        await fetchProducts();
+        if (failed) alert(`${failed} of ${ids.length} item(s) could not be deleted.`);
+    }
+
     return (
         <div className="p-2 md:p-4 min-h-screen bg-gray-50 text-gray-900 font-sans w-full">
             {/* HEADER */}
@@ -343,12 +406,48 @@ export default function StocksPage() {
                 </select>
             </div>
 
+            {/* BULK ACTION BAR - only present while something is selected */}
+            {selected.size > 0 && (
+                <div className="mb-4 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-neutral-200 bg-white px-5 py-3 shadow-sm">
+                    <span className="text-sm font-semibold text-gray-700">
+                        {selected.size} item{selected.size > 1 ? "s" : ""} selected
+                    </span>
+                    <div className="flex items-center gap-2">
+                        <button
+                            onClick={() => setSelected(new Set())}
+                            className="px-4 py-2 text-sm font-semibold text-gray-600 rounded-lg hover:bg-gray-100 transition"
+                        >
+                            Clear
+                        </button>
+                        <button
+                            onClick={handleBulkDelete}
+                            disabled={bulkDeleting}
+                            className="flex items-center gap-2 px-4 py-2 bg-red-600 text-white text-sm font-bold rounded-lg hover:bg-red-700 transition disabled:opacity-50"
+                        >
+                            <Trash2 size={16} />
+                            {bulkDeleting ? "Deleting..." : `Delete selected`}
+                        </button>
+                    </div>
+                </div>
+            )}
+
             {/* TABLE */}
             <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
                 <div className="overflow-x-auto">
                     <table className="w-full text-sm text-left">
                         <thead className="bg-gray-50 text-gray-600 font-bold border-b border-gray-100 uppercase tracking-wider text-xs">
                             <tr>
+                                <th className="px-6 py-4 w-12">
+                                    <input
+                                        ref={selectAllRef}
+                                        type="checkbox"
+                                        checked={allVisibleSelected}
+                                        onChange={toggleAll}
+                                        disabled={visibleIds.length === 0}
+                                        aria-label="Select all products"
+                                        className="w-4 h-4 rounded border-gray-300 text-neutral-800 focus:ring-neutral-700 cursor-pointer disabled:cursor-not-allowed"
+                                    />
+                                </th>
                                 <th className="px-6 py-4">#</th>
                                 <th className="px-6 py-4">Product Name</th>
                                 <th className="px-6 py-4">Category</th>
@@ -360,12 +459,24 @@ export default function StocksPage() {
                         </thead>
                         <tbody className="divide-y divide-gray-100">
                             {loading ? (
-                                <tr><td colSpan={7} className="text-center py-10 text-gray-500">Loading...</td></tr>
+                                <tr><td colSpan={8} className="text-center py-10 text-gray-500">Loading...</td></tr>
                             ) : filteredProducts.length === 0 ? (
-                                <tr><td colSpan={7} className="text-center py-10 text-gray-500">No products found</td></tr>
+                                <tr><td colSpan={8} className="text-center py-10 text-gray-500">No products found</td></tr>
                             ) : (
                                 filteredProducts.map((p, i) => (
-                                    <tr key={p._id || i} className="hover:bg-gray-50 transition">
+                                    <tr
+                                        key={p._id || i}
+                                        className={`transition ${p._id && selected.has(p._id) ? "bg-neutral-50" : "hover:bg-gray-50"}`}
+                                    >
+                                        <td className="px-6 py-4">
+                                            <input
+                                                type="checkbox"
+                                                checked={!!p._id && selected.has(p._id)}
+                                                onChange={() => p._id && toggleOne(p._id)}
+                                                aria-label={`Select ${p.name}`}
+                                                className="w-4 h-4 rounded border-gray-300 text-neutral-800 focus:ring-neutral-700 cursor-pointer"
+                                            />
+                                        </td>
                                         <td className="px-6 py-4 font-medium text-gray-500">{i + 1}</td>
                                         <td className="px-6 py-4 flex items-center gap-3">
                                             {p.imageUrl && <img src={p.imageUrl} alt="" loading="lazy" className="w-10 h-10 rounded object-cover border border-gray-200" />}
@@ -402,16 +513,20 @@ export default function StocksPage() {
                 </div>
                 <div className="p-4 border-t border-gray-100 text-xs text-gray-500 flex justify-between items-center">
                     <span>Showing {filteredProducts.length} items</span>
-                    {/* Pagination could go here */}
+                    {selected.size > 0 && <span>{selected.size} selected</span>}
                 </div>
             </div>
               </>
             )}
 
             {/* MODAL */}
+            {/* The overlay is the scroll container (not the panel) and uses
+                overscroll-contain, so scrolling the modal never chains through
+                to the admin page behind it. */}
             {isModalOpen && (
-                <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 backdrop-blur-sm">
-                    <div className="bg-white rounded-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto shadow-2xl animate-in zoom-in-95 duration-200">
+                <div data-lenis-prevent className="fixed inset-0 bg-black/50 z-50 overflow-y-auto overscroll-contain p-4 backdrop-blur-sm">
+                  <div className="flex min-h-full items-center justify-center">
+                    <div className="bg-white rounded-2xl w-full max-w-4xl shadow-2xl animate-in zoom-in-95 duration-200">
                         <div className="p-6 border-b border-gray-100 flex justify-between items-center bg-gray-50/50 sticky top-0 z-10 backdrop-blur">
                             <h2 className="text-xl font-bold text-gray-900">{editingId ? "Edit Item" : "Add New Item"}</h2>
                             <button onClick={() => setIsModalOpen(false)} className="p-2 hover:bg-gray-100 rounded-full transition"><X size={20} /></button>
@@ -449,6 +564,24 @@ export default function StocksPage() {
                                     <div>
                                         <label className="block text-sm font-medium text-gray-700 mb-1">Unit</label>
                                         <input name="unit" value={formData.unit} onChange={handleInputChange} className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#111827] outline-none" placeholder="e.g. 100g" />
+                                    </div>
+                                    <div>
+                                        <label className="block text-sm font-medium text-gray-700 mb-1">Sizes / Variants</label>
+                                        <input
+                                            value={(formData.sizes || []).join(", ")}
+                                            onChange={(e) =>
+                                                setFormData(prev => ({
+                                                    ...prev,
+                                                    sizes: e.target.value.split(",").map(v => v.trim()).filter(Boolean),
+                                                }))
+                                            }
+                                            className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#111827] outline-none"
+                                            placeholder="e.g. S, M, L, XL  -  or leave empty"
+                                        />
+                                        <p className="text-xs text-gray-500 mt-1">
+                                            Comma separated. Leave empty for products with no size (accessories, mugs, gadgets) -
+                                            the size picker is then hidden on the product page.
+                                        </p>
                                     </div>
                                     <div>
                                         <label className="block text-sm font-medium text-gray-700 mb-1">Product Image</label>
@@ -503,25 +636,70 @@ export default function StocksPage() {
                             {/* SPECIFICATIONS */}
                             <div>
                                 <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wider mb-4 border-b border-gray-100 pb-2">Specifications</h3>
-                                <p className="text-xs text-gray-400 mb-4">Shown as &quot;Product Details&quot; on the product page (Category comes from above).</p>
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <div>
-                                        <label className="block text-sm font-medium text-gray-700 mb-1">Product Type</label>
-                                        <input name="productType" value={formData.productType || ""} onChange={handleInputChange} placeholder="e.g. Oversized T-shirt" className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#111827] outline-none" />
-                                    </div>
-                                    <div>
-                                        <label className="block text-sm font-medium text-gray-700 mb-1">Fabric</label>
-                                        <input name="fabric" value={formData.fabric || ""} onChange={handleInputChange} placeholder="e.g. 100% Cotton" className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#111827] outline-none" />
-                                    </div>
-                                    <div>
-                                        <label className="block text-sm font-medium text-gray-700 mb-1">Fit</label>
-                                        <input name="fit" value={formData.fit || ""} onChange={handleInputChange} placeholder="e.g. Oversized / Regular" className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#111827] outline-none" />
-                                    </div>
-                                    <div>
-                                        <label className="block text-sm font-medium text-gray-700 mb-1">Closure</label>
-                                        <input name="closure" value={formData.closure || ""} onChange={handleInputChange} placeholder="e.g. Pullover" className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#111827] outline-none" />
-                                    </div>
+                                <p className="text-xs text-gray-400 mb-4">
+                                    Shown as &quot;Product Details&quot; on the product page (Category comes from above).
+                                    Name each spec yourself, so this works for any product - clothing, electronics,
+                                    accessories, anything.
+                                </p>
+
+                                {/* Free-form label/value rows rather than fixed clothing fields,
+                                    so a phone holder can list "Material / Compatibility" just as
+                                    easily as a shirt lists "Fabric / Fit". */}
+                                <div className="space-y-2">
+                                    {(formData.technicalDetails || []).map((detail, index) => (
+                                        <div key={index} className="flex gap-2">
+                                            <input
+                                                value={detail.label}
+                                                onChange={(e) => handleTechnicalDetailChange(index, "label", e.target.value)}
+                                                className="w-1/3 px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#111827] outline-none"
+                                                placeholder="Spec name (e.g. Material)"
+                                            />
+                                            <input
+                                                value={detail.value}
+                                                onChange={(e) => handleTechnicalDetailChange(index, "value", e.target.value)}
+                                                className="flex-1 px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#111827] outline-none"
+                                                placeholder="Value (e.g. ABS Plastic)"
+                                            />
+                                            <button type="button" onClick={() => removeTechnicalDetail(index)} className="p-2 text-red-500 hover:bg-red-50 rounded-lg">
+                                                <Trash2 size={16} />
+                                            </button>
+                                        </div>
+                                    ))}
+                                    {(formData.technicalDetails || []).length === 0 && (
+                                        <p className="text-sm text-gray-400 italic">No specifications added yet.</p>
+                                    )}
+                                    <button type="button" onClick={addTechnicalDetail} className="text-sm text-[#111827] font-bold hover:underline flex items-center gap-1 pt-1">
+                                        <Plus size={16} /> Add Specification
+                                    </button>
                                 </div>
+
+                                {/* Legacy clothing fields: only surfaced for products that already
+                                    have them, so old data stays editable without cluttering the
+                                    form for everything else. */}
+                                {(formData.productType || formData.fabric || formData.fit || formData.closure) && (
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6 pt-4 border-t border-gray-100">
+                                        <p className="col-span-full text-xs text-gray-400">
+                                            Older clothing fields on this product. Clear them and add them as
+                                            specifications above if you prefer.
+                                        </p>
+                                        <div>
+                                            <label className="block text-sm font-medium text-gray-700 mb-1">Product Type</label>
+                                            <input name="productType" value={formData.productType || ""} onChange={handleInputChange} className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#111827] outline-none" />
+                                        </div>
+                                        <div>
+                                            <label className="block text-sm font-medium text-gray-700 mb-1">Fabric</label>
+                                            <input name="fabric" value={formData.fabric || ""} onChange={handleInputChange} className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#111827] outline-none" />
+                                        </div>
+                                        <div>
+                                            <label className="block text-sm font-medium text-gray-700 mb-1">Fit</label>
+                                            <input name="fit" value={formData.fit || ""} onChange={handleInputChange} className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#111827] outline-none" />
+                                        </div>
+                                        <div>
+                                            <label className="block text-sm font-medium text-gray-700 mb-1">Closure</label>
+                                            <input name="closure" value={formData.closure || ""} onChange={handleInputChange} className="w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#111827] outline-none" />
+                                        </div>
+                                    </div>
+                                )}
                             </div>
 
                             {/* SECTION 1.5: ADDITIONAL DETAILS */}
@@ -627,19 +805,8 @@ export default function StocksPage() {
                                         </button>
                                     </div>
 
-                                    <div className="col-span-2">
-                                        <label className="block text-sm font-medium text-gray-700 mb-2">Technical Details</label>
-                                        {formData.technicalDetails?.map((detail, index) => (
-                                            <div key={index} className="flex gap-2 mb-2">
-                                                <input value={detail.label} onChange={(e) => handleTechnicalDetailChange(index, "label", e.target.value)} className="w-1/3 px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#111827] outline-none" placeholder="Label (e.g. Material)" />
-                                                <input value={detail.value} onChange={(e) => handleTechnicalDetailChange(index, "value", e.target.value)} className="flex-1 px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#111827] outline-none" placeholder="Value (e.g. Cotton)" />
-                                                <button type="button" onClick={() => removeTechnicalDetail(index)} className="p-2 text-red-500 hover:bg-red-50 rounded-lg"><Trash2 size={16} /></button>
-                                            </div>
-                                        ))}
-                                        <button type="button" onClick={addTechnicalDetail} className="text-sm text-[#111827] font-bold hover:underline flex items-center gap-1">
-                                            <Plus size={16} /> Add Technical Detail
-                                        </button>
-                                    </div>
+                                    {/* Technical Details moved up into the Specifications section -
+                                        it is the same label/value data, edited in one place. */}
                                 </div>
                             </div>
 
@@ -672,6 +839,7 @@ export default function StocksPage() {
                             </div>
                         </form>
                     </div>
+                  </div>
                 </div>
             )}
         </div>

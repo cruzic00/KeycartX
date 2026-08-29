@@ -201,7 +201,11 @@ export default function CustomizationPage() {
         <div className="flex items-center justify-between mb-4">
           <div>
             <h2 className="text-lg font-bold text-[#111827]">Navigation Menu</h2>
-            <p className="text-xs text-neutral-400 mt-0.5">Type a name, then pick which page it opens.</p>
+            <p className="text-xs text-neutral-400 mt-0.5">
+              Type a name, then pick which page it opens. This only creates a menu link -
+              to add a new product category, use Products &rarr; Categories; it then shows
+              up in this dropdown.
+            </p>
           </div>
           <button onClick={addNav} className="flex items-center gap-1 text-sm font-bold text-[#111827] px-3 py-1.5 rounded-lg border border-neutral-200 hover:bg-neutral-50">
             <Plus size={15} /> Add Link

@@ -71,7 +71,10 @@ export default function ProductDetail() {
         }}
       />
       <div className="max-w-[1500px] mx-auto px-6 lg:px-12">
-        <section className="grid gap-10 md:grid-cols-2 py-12">
+        {/* Small top padding only: the page wrapper in LayoutShell already
+            adds py-8, and stacking another py-12 pushed the product below
+            the fold on a laptop screen. */}
+        <section className="grid gap-10 md:grid-cols-2 pt-1 pb-12">
           {/* IMAGE GALLERY */}
           <div>
             <ProductGallery
@@ -130,13 +133,18 @@ export default function ProductDetail() {
 
             {/* PRODUCT DETAILS */}
             {(() => {
-              const rows = [
+              // Category, then any admin-defined specs, then the legacy
+              // clothing fields for products created before specs were free-form.
+              const rows: [string, any][] = [
                 ["Product Category", product.category],
+                ...(product.technicalDetails ?? [])
+                  .filter((d: any) => d?.label && d?.value)
+                  .map((d: any) => [d.label, d.value] as [string, any]),
                 ["Product Type", product.productType],
                 ["Fabric", product.fabric],
                 ["Fit", product.fit],
                 ["Closure", product.closure],
-              ].filter(([, v]) => v);
+              ].filter(([, v]) => v) as [string, any][];
               return rows.length > 0 ? (
                 <div>
                   <h3 className="font-bold text-[#111827] mb-2">Product Details</h3>

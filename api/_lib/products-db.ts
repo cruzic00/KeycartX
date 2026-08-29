@@ -21,7 +21,9 @@ export function mapProduct(d: any) {
     image,
     imageUrl: image,
     images: gallery.length ? gallery : [image],
-    sizes: Array.isArray(d.sizes) && d.sizes.length ? d.sizes : ["S", "M", "L", "XL"],
+    // No fallback: a product with no sizes is a product without variants
+    // (mugs, accessories...), not a T-shirt missing its sizes.
+    sizes: Array.isArray(d.sizes) ? d.sizes : [],
     colors: d.colors ?? [],
     rating: d.rating ?? 0,
     reviews: d.reviews_count ?? 0,

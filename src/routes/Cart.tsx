@@ -55,7 +55,7 @@ export default function CartPage() {
                   <div className="flex items-start justify-between gap-3">
                     <div className="min-w-0">
                       <h3 className="font-bold text-[#111827] truncate">{it.name}</h3>
-                      <p className="text-sm text-neutral-500 mt-0.5">Size: {it.size}</p>
+                      {it.size && <p className="text-sm text-neutral-500 mt-0.5">Size: {it.size}</p>}
                     </div>
                     <button
                       onClick={() => removeItem(it.id, it.size)}
