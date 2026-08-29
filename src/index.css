@@ -1,0 +1,203 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  overflow-x: clip;
+  max-width: 100%;
+}
+
+/* Smooth underline hover effect */
+nav a {
+  position: relative;
+  text-decoration: none;
+}
+
+nav a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background-color: #623903;
+  width: 0%;
+  transition: width 0.3s ease;
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+:root {
+  --card: #623903;
+  --muted: #9aa1ac;
+  --card-outline: rgb(255, 255, 255);
+  --card-outline-strong: rgb(255, 255, 255);
+
+  --primary: #623903;
+  --secondary: #f6efdb;
+  --accent: #D4AF37;
+  --accent-dark: #B5952F;
+}
+
+/* Ported from ProfileForm.tsx's <style jsx> */
+.pf-input {
+  width: 100%;
+  padding: 0.65rem 0.9rem 0.65rem 2.4rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.6rem;
+  color: #111827;
+  outline: none;
+  transition: all 0.15s;
+}
+.pf-input:focus {
+  border-color: #111827;
+  box-shadow: 0 0 0 3px rgba(17, 24, 39, 0.08);
+}
+
+/* Ported from profile/addresses/page.tsx's <style jsx> */
+.addr-in {
+  padding: 0.6rem 0.85rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.6rem;
+  outline: none;
+}
+.addr-in:focus {
+  border-color: #623903;
+  box-shadow: 0 0 0 3px rgba(98, 57, 3, 0.12);
+}
+
+.card {
+  background: var(--card);
+  border-radius: .9rem;
+  padding: 1rem;
+  border: 1px solid var(--card-outline);
+  box-shadow: 0 1px 5px rgb(255, 255, 255);
+  transition: border-color 200ms ease, box-shadow 200ms ease, transform 200ms ease;
+}
+
+.card:hover {
+  border-color: var(--card-outline-weak);
+  box-shadow: 0 6px 30px rgba(45, 44, 44, 0.341);
+  transform: scale(1.01)
+}
+
+body {
+  background: var(--bg);
+  color: rgb(0, 0, 0);
+}
+
+.container {
+  max-width: 1222px;
+  margin: 0 auto;
+  padding: 2rem 0rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: .9rem;
+  padding: 0.5rem 1.5rem;
+  font-weight: 600;
+}
+
+.btn-primary {
+  background: #623903;
+  color: rgb(0, 0, 0);
+}
+
+.btn-outline {
+  border: 2px solid #333;
+}
+
+.badge {
+  font-size: 0.75rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 9999px;
+  background: #ffffff;
+}
+
+a {
+  color: #623903;
+}
+
+a:hover {
+  color: rgb(72, 0, 255);
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-up {
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 20s linear infinite;
+}
+
+/* Print: show only #print-area (used by admin order print) */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #print-area,
+  #print-area * {
+    visibility: visible;
+  }
+  #print-area {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    padding: 24px;
+  }
+  .no-print {
+    display: none !important;
+  }
+}
+
+/* Hide scrollbars (used by the product gallery thumbnails) */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* CheckoutButton's address form inputs — ported from a `<style jsx>` block
+   (styled-jsx is a Next.js-only feature with no Vite equivalent). */
+.input-c {
+  padding: 0.6rem 0.85rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.6rem;
+  outline: none;
+}
+
+.input-c:focus {
+  border-color: #623903;
+  box-shadow: 0 0 0 3px rgba(98, 57, 3, 0.12);
+}
