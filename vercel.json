@@ -4,6 +4,17 @@
   "buildCommand": "vite build",
   "outputDirectory": "dist",
   "rewrites": [
+    {
+      "source": "/products/:slug",
+      "has": [
+        {
+          "type": "header",
+          "key": "user-agent",
+          "value": ".*(WhatsApp|facebookexternalhit|Facebot|Twitterbot|TelegramBot|Slackbot|Discordbot|LinkedInBot|Pinterest|SkypeUriPreview|redditbot|vkShare|Iframely|Embedly).*"
+        }
+      ],
+      "destination": "/api/og?slug=:slug"
+    },
     { "source": "/((?!api/).*)", "destination": "/index.html" }
   ],
   "headers": [
