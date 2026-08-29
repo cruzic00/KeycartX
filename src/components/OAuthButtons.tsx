@@ -1,12 +1,14 @@
 // Social sign-in buttons for the login and register pages.
 //
 // These are plain links, not fetch calls: the whole flow is a browser
-// redirect (here -> Supabase -> Google/Facebook -> back to
-// /api/auth/callback), and the session cookies are set by the callback on
-// the way back. Doing it with fetch would strand the cookies in an XHR
-// response the browser never navigates to.
-import { FaFacebookF } from "react-icons/fa";
-
+// redirect (here -> Supabase -> Google -> back to /api/auth/callback), and
+// the session cookies are set by the callback on the way back. Doing it with
+// fetch would strand the cookies in an XHR response the browser never
+// navigates to.
+//
+// Facebook was wired up and then dropped: it only ever returned
+// "Error getting user email from external provider", and it would have needed
+// App Review before anyone but the app's own admins could use it at all.
 function GoogleMark() {
   return (
     <svg width="18" height="18" viewBox="0 0 48 48" aria-hidden="true">
@@ -39,14 +41,6 @@ export default function OAuthButtons({ redirect = "/" }: { redirect?: string }) 
       >
         <GoogleMark />
         Continue with Google
-      </a>
-
-      <a
-        href={href("facebook")}
-        className="w-full flex items-center justify-center gap-3 py-3 px-4 rounded-md text-sm font-medium text-white bg-[#1877F2] hover:bg-[#166FE5] transition-colors"
-      >
-        <FaFacebookF size={16} />
-        Continue with Facebook
       </a>
     </div>
   );

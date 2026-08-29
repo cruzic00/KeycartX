@@ -1,4 +1,4 @@
-// GET /api/auth/oauth?provider=google|facebook&redirect=/some/path
+// GET /api/auth/oauth?provider=google&redirect=/some/path
 //
 // Starts a social sign-in. This runs on the server rather than in the
 // browser because the whole app's session lives in cookies that only the
@@ -9,7 +9,10 @@ import type { VercelRequest, VercelResponse } from "@vercel/node";
 import { createClient } from "../_lib/supabase-server.js";
 import { safeRedirect } from "../_lib/redirect.js";
 
-const PROVIDERS = new Set(["google", "facebook"]);
+// Allow-list, not a pass-through: whatever lands here is put straight into a
+// Supabase call, and only providers the store has actually configured should
+// be reachable. Facebook was removed - see OAuthButtons.tsx.
+const PROVIDERS = new Set(["google"]);
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== "GET") return res.status(405).json({ error: "Method not allowed" });
@@ -25,7 +28,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   const supabase = createClient(req, res);
   const { data, error } = await supabase.auth.signInWithOAuth({
-    provider: provider as "google" | "facebook",
+    provider: provider as "google",
     options: {
       redirectTo: `${origin}/api/auth/callback?redirect=${encodeURIComponent(redirect)}`,
       // We issue the redirect ourselves so the Set-Cookie headers written
