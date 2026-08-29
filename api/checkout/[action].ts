@@ -1,15 +1,11 @@
-// Dispatcher for /api/checkout/* - see the comment in api/[resource].ts for
-// why these are collapsed into one Serverless Function.
+// Dispatcher for /api/checkout/* - see the comments in api/[resource].ts and
+// api/_lib/dispatch.ts.
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import razorpay from "./_razorpay";
-import verify from "./_verify";
-
-type Handler = (req: VercelRequest, res: VercelResponse) => unknown;
-
-const routes: Record<string, Handler> = { razorpay, verify };
+import { dispatch } from "../_lib/dispatch";
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
-  const route = routes[String(req.query.action ?? "")];
-  if (!route) return res.status(404).json({ error: "Not found" });
-  return route(req, res);
+  return dispatch(req, res, String(req.query.action ?? ""), {
+    razorpay: () => import("./_razorpay"),
+    verify: () => import("./_verify"),
+  });
 }

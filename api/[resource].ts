@@ -4,19 +4,23 @@
 // single dispatcher fans out to them, so five routes cost one function
 // instead of five. The public URLs (/api/cart, /api/products, ...) are
 // unchanged, so nothing on the frontend has to move.
+//
+// The handlers are imported lazily: a static import of all five would make a
+// failure in any one of them (a bad module, a missing dependency) take down
+// every route in the function, and it would happen at load time, where the
+// handler's own try/catch cannot see it. import() inside the try means a
+// broken module surfaces as a readable 500 instead of a bare
+// FUNCTION_INVOCATION_FAILED - and only the module actually being used gets
+// loaded, which keeps cold starts down.
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import cart from "./_cart";
-import orders from "./_orders";
-import products from "./_products";
-import reviews from "./_reviews";
-import settings from "./_settings";
-
-type Handler = (req: VercelRequest, res: VercelResponse) => unknown;
-
-const routes: Record<string, Handler> = { cart, orders, products, reviews, settings };
+import { dispatch } from "./_lib/dispatch";
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
-  const route = routes[String(req.query.resource ?? "")];
-  if (!route) return res.status(404).json({ error: "Not found" });
-  return route(req, res);
+  return dispatch(req, res, String(req.query.resource ?? ""), {
+    cart: () => import("./_cart"),
+    orders: () => import("./_orders"),
+    products: () => import("./_products"),
+    reviews: () => import("./_reviews"),
+    settings: () => import("./_settings"),
+  });
 }
