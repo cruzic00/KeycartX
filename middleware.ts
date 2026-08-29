@@ -4,7 +4,7 @@ import { createServerClient } from "@supabase/ssr";
 const PROTECTED = ["/account", "/orders", "/profile"];
 
 // Payment lock: flip to false once the client pays, then redeploy.
-const SITE_LOCKED = true;
+const SITE_LOCKED = false;
 const UNLOCKED_PREFIXES = ["/admin", "/login", "/api"];
 
 export async function middleware(request: NextRequest) {
