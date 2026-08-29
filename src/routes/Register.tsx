@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { Eye, EyeOff } from "lucide-react";
+import OAuthButtons from "../components/OAuthButtons";
 
 export default function RegisterPage() {
   const navigate = useNavigate();
@@ -115,6 +116,8 @@ export default function RegisterPage() {
         >
           {loading ? "Creating..." : "Register"}
         </button>
+
+        <OAuthButtons redirect={redirect} />
 
         <p className="text-sm text-center text-gray-600">
           Already have an account?{" "}

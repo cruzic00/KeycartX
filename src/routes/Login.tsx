@@ -2,6 +2,7 @@ import { useAuth } from "../context/AuthContext";
 import { useNavigate, useSearchParams, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Eye, EyeOff } from "lucide-react";
+import OAuthButtons from "../components/OAuthButtons";
 
 export default function LoginPage() {
   const { refreshUser, user } = useAuth();
@@ -23,7 +24,9 @@ export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  // A failed social sign-in comes back as ?error= from /api/auth/callback,
+  // so seed the same banner the password form uses.
+  const [error, setError] = useState<string | null>(searchParams.get("error"));
   const [showPassword, setShowPassword] = useState(false);
 
   async function handleLogin(e: React.FormEvent) {
@@ -147,6 +150,8 @@ export default function LoginPage() {
               )}
             </button>
           </div>
+
+          <OAuthButtons redirect={redirect} />
 
           <div className="flex items-center justify-between mt-4">
             <div className="text-sm">

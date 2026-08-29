@@ -120,6 +120,16 @@ function enhanceResponse(res: http.ServerResponse) {
     res.end(typeof body === "string" || Buffer.isBuffer(body) ? body : JSON.stringify(body));
     return r;
   };
+  // Vercel's runtime provides this; the OAuth routes redirect rather than
+  // return JSON, so the emulator needs it too.
+  r.redirect = (statusOrUrl: number | string, maybeUrl?: string) => {
+    const status = typeof statusOrUrl === "number" ? statusOrUrl : 307;
+    const location = typeof statusOrUrl === "number" ? String(maybeUrl) : statusOrUrl;
+    res.statusCode = status;
+    res.setHeader("Location", location);
+    res.end();
+    return r;
+  };
   return r;
 }
 
