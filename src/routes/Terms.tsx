@@ -58,11 +58,8 @@ export default function Terms() {
       <Section title="Returns and replacement">
         <p>
           Items can be returned or exchanged within 7 days of delivery if they are unused, in their
-          original condition and packaging, with tags intact. Write to{" "}
-          <a href="mailto:mynonlineshop@gmail.com" className="underline text-[#111827]">
-            mynonlineshop@gmail.com
-          </a>{" "}
-          with your order number to start a return. Damaged or wrong items are replaced or refunded
+          original condition and packaging, with tags intact. Contact us with your order number to
+          start a return. Damaged or wrong items are replaced or refunded
           in full; please report them within 48 hours of delivery with photographs. Refunds are
           issued once the returned item reaches us.
         </p>

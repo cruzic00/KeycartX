@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Package, ShoppingBag, UserCog, LayoutDashboard, ChevronRight, MapPin, HelpCircle } from "lucide-react";
+import { Package, ShoppingBag, UserCog, LayoutDashboard, ChevronRight, MapPin } from "lucide-react";
 import { useAuth } from "../../context/AuthContext";
 
 export default function AccountPage() {
@@ -13,7 +13,6 @@ export default function AccountPage() {
     { href: "/profile/edit", icon: UserCog, title: "Login & Profile", desc: "Edit your name & phone" },
     { href: "/cart", icon: ShoppingBag, title: "Your Cart", desc: "Items ready for checkout" },
     { href: "/profile/addresses", icon: MapPin, title: "Addresses", desc: "Manage your delivery details" },
-    { href: "mailto:mynonlineshop@gmail.com", icon: HelpCircle, title: "Support", desc: "Get help with your orders" },
     ...(isAdmin ? [{ href: "/admin", icon: LayoutDashboard, title: "Admin Panel", desc: "Manage products & orders" }] : []),
   ];
 

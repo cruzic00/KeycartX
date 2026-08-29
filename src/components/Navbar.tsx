@@ -1,5 +1,5 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { User, LogOut, Package, ShoppingBag, HelpCircle } from "lucide-react";
+import { User, LogOut, Package, ShoppingBag } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useCart } from "../context/CartContext";
@@ -129,14 +129,6 @@ export default function Navbar({ links }: { links?: { name: string; href: string
                           <Package size={18} strokeWidth={2} />
                           My Orders
                         </Link>
-                        <a
-                          href="mailto:mynonlineshop@gmail.com"
-                          className="flex items-center gap-3 px-4 py-2.5 text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-primary rounded-lg transition-colors"
-                          onClick={() => setOpen(false)}
-                        >
-                          <HelpCircle size={18} strokeWidth={2} />
-                          Support
-                        </a>
                       </div>
 
                       <div className="border-t border-gray-100 p-2">

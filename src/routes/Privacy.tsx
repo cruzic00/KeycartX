@@ -76,25 +76,15 @@ export default function Privacy() {
 
       <Section title="Deleting your account and data">
         <div id="data-deletion" className="scroll-mt-24">
-          <p>To have your account and personal data deleted, either:</p>
-          <ul className="list-disc pl-5 space-y-2">
-            <li>
-              Email{" "}
-              <a href="mailto:mynonlineshop@gmail.com" className="underline text-[#111827]">
-                mynonlineshop@gmail.com
-              </a>{" "}
-              from the address on your account with the subject &quot;Delete my account&quot;, or
-            </li>
-            <li>
-              If you signed in with Facebook, remove KeyCartX from{" "}
-              <span className="whitespace-nowrap">Settings &rsaquo; Apps and Websites</span> on
-              Facebook and then email us as above.
-            </li>
-          </ul>
+          <p>
+            You can ask us to delete your account and personal data at any time by contacting us
+            using the contact details published on this website.
+          </p>
           <p>
             We will delete your account, profile, saved addresses, cart and reviews within 30 days
-            and confirm by email. Records of completed orders are kept where we are legally required
-            to retain them for accounting, with personal details reduced to the minimum needed.
+            and confirm once it is done. Records of completed orders are kept where we are legally
+            required to retain them for accounting, with personal details reduced to the minimum
+            needed.
           </p>
         </div>
       </Section>

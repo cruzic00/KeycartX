@@ -4,8 +4,11 @@
 // Supabase only sends auth emails (confirm signup, reset password) and its
 // built-in SMTP is rate-limited for testing, so order mail has to be sent
 // from here. Brevo rather than Resend because Resend needs a verified domain
-// to mail anyone but yourself, and this store has no domain yet - Brevo will
-// send from a verified address like mynonlineshop@gmail.com.
+// to mail anyone but yourself, and this store has no domain yet - Brevo can
+// send from a single verified address instead.
+//
+// EMAIL_FROM is the sending address only. It is never rendered anywhere on
+// the site, so it does not have to be an address the store publishes.
 //
 // Nothing here ever throws at the caller. An order must still be placed if
 // the mail provider is down or unconfigured; a missing receipt is an

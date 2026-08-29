@@ -15,19 +15,6 @@ export default function Footer() {
             </p>
           </div>
 
-          <div className="sm:text-right">
-            <p className="text-sm uppercase tracking-[0.3em] text-gray-400 mb-2">For Enquiries</p>
-            {/* Points at the same working inbox the Navbar support link uses.
-                Change to a branded address only once that mailbox exists —
-                a dead address here silently loses customer enquiries. */}
-            <a
-              href="mailto:mynonlineshop@gmail.com"
-              className="text-2xl md:text-3xl font-bold text-white hover:text-neutral-300 transition-colors break-all"
-            >
-              mynonlineshop@gmail.com
-            </a>
-            <p className="mt-3 text-gray-400 text-sm">We usually reply within 24 hours.</p>
-          </div>
         </div>
 
         <div className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-4">

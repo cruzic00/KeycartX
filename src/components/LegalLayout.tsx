@@ -26,13 +26,6 @@ export default function LegalLayout({
       <p className="mt-2 text-sm text-neutral-500">Last updated: {updated}</p>
       <div className="mt-2 h-px bg-neutral-200" />
       {children}
-      <p className="mt-12 text-sm text-neutral-500">
-        Questions about this page? Write to{" "}
-        <a href="mailto:mynonlineshop@gmail.com" className="underline text-[#111827]">
-          mynonlineshop@gmail.com
-        </a>
-        .
-      </p>
     </div>
   );
 }
