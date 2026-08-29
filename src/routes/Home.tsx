@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Banner from "../components/Banner";
 import ProductSlider from "../components/ProductSlider";
+import { HomeSkeleton } from "../components/Skeletons";
 import type { SectionBlock, BannerBlock, HomeSettings } from "../../api/_lib/settings";
 
 function productsForSource(all: any[], source: string) {
@@ -70,7 +71,9 @@ export default function Home() {
     });
   }, []);
 
-  if (!products || !settings) return null;
+  // Same reason as ProductDetail: returning null here collapsed the page to
+  // nav + footer until the fetch landed.
+  if (!products || !settings) return <HomeSkeleton />;
 
   const heroSlides = settings.heroSlides.map((m) => ({
     type: m.mediaType,

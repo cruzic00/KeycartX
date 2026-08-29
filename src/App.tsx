@@ -47,7 +47,11 @@ export default function App() {
       <ScrollToTop />
       <ErrorBoundary>
         <Providers>
-          <Suspense fallback={null}>
+          {/* Outer boundary, for the lazy AdminLayout, which sits outside
+              RootShell. Customer pages suspend against the nested boundary
+              inside RootShell instead, so the site chrome survives a route
+              change - see the comment there. */}
+          <Suspense fallback={<div className="min-h-screen" />}>
             <Routes>
               <Route element={<RootShell />}>
                 <Route index element={<Home />} />

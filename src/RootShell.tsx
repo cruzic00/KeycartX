@@ -2,7 +2,7 @@
 // (server component) — fetches the same data from the new GET /api/settings
 // endpoint instead, then renders the same LayoutShell (marquee/nav) + the
 // AnimatePresence page-transition wrapper that used to live in app/template.tsx.
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import LayoutShell from "./components/LayoutShell";
@@ -22,11 +22,20 @@ export default function RootShell() {
 
   return (
     <LayoutShell marquee={settings?.marquee} nav={settings?.nav}>
-      <AnimatePresence mode="wait">
-        <PageTransition key={location.pathname}>
-          <Outlet />
-        </PageTransition>
-      </AnimatePresence>
+      {/* The Suspense boundary belongs here, inside the chrome, not around
+          the whole route tree in App.tsx. Out there, React swaps the entire
+          subtree for the fallback while a lazy route's chunk downloads -
+          unmounting the marquee, navbar and footer and remounting them a
+          moment later, which is what made the footer flash up under the
+          header on every navigation. Nested inside, only the page content
+          suspends. */}
+      <Suspense fallback={<div className="min-h-screen" />}>
+        <AnimatePresence mode="wait">
+          <PageTransition key={location.pathname}>
+            <Outlet />
+          </PageTransition>
+        </AnimatePresence>
+      </Suspense>
     </LayoutShell>
   );
 }

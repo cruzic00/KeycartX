@@ -11,6 +11,7 @@ import ProductSlider from "../components/ProductSlider";
 import ReviewForm from "../components/ReviewForm";
 import ShareButton from "../components/ShareButton";
 import TrackView from "../components/TrackView";
+import { ProductDetailSkeleton } from "../components/Skeletons";
 
 export default function ProductDetail() {
   const { slug } = useParams<{ slug: string }>();
@@ -43,7 +44,10 @@ export default function ProductDetail() {
     load();
   }, [load]);
 
-  if (loading) return null;
+  // A skeleton, not null: rendering nothing collapsed the page to nav +
+  // footer, so the footer jumped up under the header and the product shoved
+  // it back down a second later.
+  if (loading) return <ProductDetailSkeleton />;
 
   if (notFound || !product) {
     return (
