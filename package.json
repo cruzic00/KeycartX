@@ -3,14 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbo",
-    "build": "next build",
-    "start": "next start",
+    "dev": "concurrently -n api,web -c magenta,cyan \"npm:dev:api\" \"npm:dev:web\"",
+    "build": "vite build",
+    "preview": "vite preview",
     "lint": "next lint",
     "dev:api": "tsx watch api/_dev/server.ts",
     "dev:web": "vite",
-    "dev:vite": "concurrently -n api,web -c magenta,cyan \"npm:dev:api\" \"npm:dev:web\"",
-    "build:vite": "vite build"
+    "dev:next": "next dev --turbo",
+    "build:next": "next build"
   },
   "dependencies": {
     "@supabase/ssr": "^0.5.2",

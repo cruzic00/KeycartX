@@ -1,26 +1,33 @@
 // Creates (or updates) an admin user in Supabase.
-// Usage:  node scripts/create-admin.mjs
-// Requires NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in .env.local
+// Usage:  node scripts/create-admin.mjs [email] [password] [name]
+// Reads NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY from
+// .env.local, falling back to .env.
 import { readFileSync } from "node:fs";
 import { createClient } from "@supabase/supabase-js";
 
-// ---- Admin credentials (change if you like) ----
-const ADMIN_EMAIL = "admin@gmail.com";
-const ADMIN_PASSWORD = "password123";
-const ADMIN_NAME = "Admin";
-// -------------------------------------------------
+// Credentials come from the command line; these are only the fallbacks.
+const [argEmail, argPassword, argName] = process.argv.slice(2);
+const ADMIN_EMAIL = argEmail || "admin@gmail.com";
+const ADMIN_PASSWORD = argPassword || "password123";
+const ADMIN_NAME = argName || "Admin";
 
-// Minimal .env.local parser (Node doesn't auto-load it).
+// Minimal env parser (Node doesn't auto-load these files).
+// .env.local wins over .env, matching the old Next.js precedence.
 function loadEnv() {
   const env = {};
-  try {
-    const raw = readFileSync(new URL("../.env.local", import.meta.url), "utf8");
-    for (const line of raw.split("\n")) {
-      const m = line.match(/^\s*([A-Z0-9_]+)\s*=\s*(.*)\s*$/);
-      if (m) env[m[1]] = m[2].replace(/^["']|["']$/g, "");
+  for (const file of ["../.env", "../.env.local"]) {
+    try {
+      const raw = readFileSync(new URL(file, import.meta.url), "utf8");
+      for (const line of raw.split("\n")) {
+        const m = line.match(/^\s*([A-Z0-9_]+)\s*=\s*(.*)\s*$/);
+        if (m) env[m[1]] = m[2].replace(/^["']|["']$/g, "");
+      }
+    } catch {
+      // File may not exist — that's fine as long as the other one has the keys.
     }
-  } catch {
-    console.error("Could not read .env.local");
+  }
+  if (!env.NEXT_PUBLIC_SUPABASE_URL) {
+    console.error("Could not read Supabase config from .env or .env.local");
   }
   return env;
 }
@@ -31,9 +38,20 @@ const serviceKey = env.SUPABASE_SERVICE_ROLE_KEY;
 
 if (!url || !serviceKey || serviceKey.includes("PUT_YOUR")) {
   console.error(
-    "\n❌ Missing/placeholder SUPABASE_SERVICE_ROLE_KEY in .env.local.\n" +
+    "\n❌ Missing/placeholder SUPABASE_SERVICE_ROLE_KEY in .env / .env.local.\n" +
       "   Get the service_role (or sb_secret_...) key from Supabase → Settings → API,\n" +
-      "   paste it into .env.local, then run this again.\n"
+      "   paste it into .env, then run this again.\n"
+  );
+  process.exit(1);
+}
+
+// A publishable/anon key here would fail later with a confusing RLS error —
+// catch the mix-up up front, since only service_role can create users.
+if (serviceKey.startsWith("sb_publishable_")) {
+  console.error(
+    "\n❌ SUPABASE_SERVICE_ROLE_KEY holds a PUBLISHABLE key.\n" +
+      "   That key cannot create users. Copy the Secret key (sb_secret_...)\n" +
+      "   or the legacy service_role key from Supabase → Settings → API Keys.\n"
   );
   process.exit(1);
 }
